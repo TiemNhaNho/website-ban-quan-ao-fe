@@ -40,7 +40,10 @@
           <div class="card">
             <div class="card-header">
               <h3>Danh Sách Danh Mục</h3>
-              <button class="btn btn-primary" onclick="openAddModal()">+ Thêm Danh Mục</button>
+              <div style="display: flex; gap: 1rem; align-items: center;">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm danh mục..." onkeyup="searchTable()" style="padding: 0.5rem 1rem; border: 1px solid #ddd; border-radius: 4px; width: 250px;">
+                <button class="btn btn-primary" onclick="openAddModal()">+ Thêm Danh Mục</button>
+              </div>
             </div>
 
             <table class="table">
@@ -53,16 +56,15 @@
                   <th>Hành Động</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
+              <tbody id="categoriesBody">
+                <tr class="category-row" onclick="openViewModal(1)">
                   <td>1</td>
                   <td>Nam</td>
                   <td>Sản phẩm dành cho nam</td>
                   <td>125</td>
-                  <td>
-                    <button class="btn-icon" onclick="viewCategory(1)"><i class="icon icon-eye"></i></button>
-                    <button class="btn-icon" onclick="editCategory(1)"><i class="icon icon-pencil"></i></button>
-                    <button class="btn-icon" onclick="deleteCategory(1)"><i class="icon icon-trash"></i></button>
+                  <td onclick="event.stopPropagation()">
+                    <button class="btn-icon" onclick="openEditModal(1)" title="Sửa"><img src="../images/sua.png" alt="Sửa" class="icon-img"></button>
+                    <button class="btn-icon" onclick="deleteCategory(1)" title="Xóa"><img src="../images/huy.png" alt="Xóa" class="icon-img"></button>
                   </td>
                 </tr>
               </tbody>
@@ -97,12 +99,130 @@
   </div>
 
   <script>
-    function openAddModal() { openModal('categoryModal'); }
-    function editCategory(id) { openAddModal(); }
-    function viewCategory(id) { showToast('Chi tiết danh mục ' + id); }
-    function deleteCategory(id) { if(confirmDelete('danh mục')) showToast('Đã xóa danh mục'); }
-    function closeModal() { closeModal('categoryModal'); }
-    document.getElementById('categoryForm').addEventListener('submit', function(e) { e.preventDefault(); showToast('Lưu danh mục thành công'); closeModal('categoryModal'); });
+    function searchTable() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const tbody = document.getElementById('categoriesBody');
+      const rows = tbody.getElementsByTagName('tr');
+      
+      for (let row of rows) {
+        const name = row.cells[1]?.textContent || '';
+        const description = row.cells[2]?.textContent || '';
+        
+        if (name.toLowerCase().includes(input) || description.toLowerCase().includes(input)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      }
+    }
+
+    const categoriesData = {
+      1: { id: 1, name: 'Nam', description: 'Sản phẩm dành cho nam', productCount: 125 },
+      2: { id: 2, name: 'Nữ', description: 'Sản phẩm dành cho nữ', productCount: 98 },
+      3: { id: 3, name: 'Unisex', description: 'Sản phẩm dành cho cả nam và nữ', productCount: 45 }
+    };
+
+    function openAddModal() {
+      document.getElementById('categoryForm').reset();
+      document.getElementById('categoryForm').dataset.categoryId = '';
+      openModal('categoryModal');
+    }
+
+    function openEditModal(id) {
+      const category = categoriesData[id];
+      const inputs = document.querySelectorAll('#categoryForm input, #categoryForm textarea');
+      inputs[0].value = category.name;
+      inputs[1].value = category.description;
+      document.getElementById('categoryForm').dataset.categoryId = id;
+      openModal('categoryModal');
+    }
+
+    function openViewModal(id) {
+      const category = categoriesData[id];
+      const modal = document.createElement('div');
+      modal.className = 'modal';
+      modal.id = 'viewModal';
+      modal.style.display = 'block';
+      modal.innerHTML = `
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Chi Tiết Danh Mục</h2>
+            <button class="close-btn" onclick="this.closest('.modal').remove()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div><strong>Tên Danh Mục:</strong> <p>${category.name}</p></div>
+              <div><strong>Số Sản Phẩm:</strong> <p>${category.productCount}</p></div>
+              <div colspan="2"><strong>Mô Tả:</strong> <p>${category.description}</p></div>
+            </div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      addSwipeListener('viewModal');
+    }
+
+    function deleteCategory(id) {
+      if(!confirmDelete('danh mục')) return;
+      delete categoriesData[id];
+      const tbody = document.getElementById('categoriesBody');
+      tbody.querySelectorAll('tr').forEach(row => {
+        if(parseInt(row.cells[0].textContent) === id) row.remove();
+      });
+      showToast('Đã xóa danh mục');
+    }
+
+    function addSwipeListener(modalId) {
+      const modal = document.getElementById(modalId);
+      let touchStartY = 0;
+      modal.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; });
+      modal.addEventListener('touchend', e => {
+        if(touchStartY - e.changedTouches[0].clientY > 100) {
+          modal.classList.add('closing');
+          setTimeout(() => modal.remove(), 300);
+        }
+      });
+    }
+
+    document.getElementById('categoryForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const inputs = this.querySelectorAll('input, textarea');
+      const categoryId = this.dataset.categoryId;
+      const id = categoryId ? parseInt(categoryId) : Math.max(...Object.keys(categoriesData).map(Number)) + 1;
+      
+      categoriesData[id] = {
+        id: id,
+        name: inputs[0].value,
+        description: inputs[1].value,
+        productCount: categoriesData[id]?.productCount || 0
+      };
+
+      const tbody = document.getElementById('categoriesBody');
+      const existingRow = tbody.querySelector(`tr[data-id="${id}"]`);
+      
+      if(existingRow) {
+        existingRow.cells[1].textContent = inputs[0].value;
+        existingRow.cells[2].textContent = inputs[1].value;
+      } else {
+        const row = tbody.insertRow();
+        row.className = 'category-row';
+        row.dataset.id = id;
+        row.onclick = () => openViewModal(id);
+        row.innerHTML = `
+          <td>${id}</td>
+          <td>${inputs[0].value}</td>
+          <td>${inputs[1].value}</td>
+          <td>${categoriesData[id].productCount}</td>
+          <td onclick="event.stopPropagation()">
+            <button class="btn-icon" onclick="openEditModal(${id})"><img src="../images/sua.png" alt="Sửa" class="icon-img"></button>
+            <button class="btn-icon" onclick="deleteCategory(${id})"><img src="../images/huy.png" alt="Xóa" class="icon-img"></button>
+          </td>
+        `;
+      }
+
+      showToast('Lưu danh mục thành công');
+      closeModal('categoryModal');
+    });
   </script>
   <script src="js/admin.js"></script>
 </body>

@@ -15,7 +15,6 @@
     <aside class="sidebar">
       <div class="sidebar-header">
         <h2 class="logo">Tiệm Nhà Nhỏ</h2>
-        <p class="subtitle">Admin Panel</p>
       </div>
       <nav class="sidebar-nav">
         <ul class="nav-list">
@@ -38,10 +37,7 @@
           <h1>Quản lí Đơn Hàng</h1>
         </div>
         <div class="header-right">
-          <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Tìm kiếm...">
-            <i class="icon icon-search"></i>
-          </div>
+        
         </div>
       </header>
 
@@ -50,7 +46,10 @@
           <div class="card">
             <div class="card-header">
               <h3>Danh Sách Đơn Hàng</h3>
-              <button class="btn btn-primary" onclick="openAddModal()">+ Thêm Đơn Hàng</button>
+              <div style="display: flex; gap: 1rem; align-items: center;">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm đơn hàng..." onkeyup="searchTable()" style="padding: 0.5rem 1rem; border: 1px solid #ddd; border-radius: 4px; width: 250px;">
+                <button class="btn btn-primary" onclick="openAddModal()">+ Thêm Đơn Hàng</button>
+              </div>
             </div>
 
             <div class="table-responsive">
@@ -66,28 +65,26 @@
                   </tr>
                 </thead>
                 <tbody id="ordersBody">
-                  <tr>
+                  <tr class="order-row" data-id="1" onclick="openViewModal(1)">
                     <td>#ORD001</td>
                     <td>Nguyễn Văn A</td>
                     <td>31/12/2025</td>
                     <td>₫ 1,250,000</td>
                     <td><span class="badge badge-pending">Chưa xử lí</span></td>
-                    <td>
-                      <button class="btn-icon" onclick="openViewModal(1)" title="Xem"><i class="icon icon-eye"></i></button>
-                      <button class="btn-icon" onclick="openEditModal(1)" title="Sửa"><i class="icon icon-pencil"></i></button>
-                      <button class="btn-icon" onclick="cancelOrder(1)" title="Hủy đơn"><i class="icon icon-trash"></i></button>
+                    <td onclick="event.stopPropagation()">
+                      <button class="btn-icon" onclick="openEditModal(1)" title="Sửa"><img src="../images/sua.png" alt="Sửa" class="icon-img"></button>
+                      <button class="btn-icon" onclick="cancelOrder(1)" title="Hủy đơn"><img src="../images/huy.png" alt="Hủy" class="icon-img"></button>
                     </td>
                   </tr>
-                  <tr>
+                  <tr class="order-row" data-id="2" onclick="openViewModal(2)">
                     <td>#ORD002</td>
                     <td>Trần Thị B</td>
                     <td>30/12/2025</td>
                     <td>₫ 850,000</td>
                     <td><span class="badge badge-confirmed">Đã xác nhận</span></td>
-                    <td>
-                      <button class="btn-icon" onclick="openViewModal(2)" title="Xem"><i class="icon icon-eye"></i></button>
-                      <button class="btn-icon" onclick="openEditModal(2)" title="Sửa"><i class="icon icon-pencil"></i></button>
-                      <button class="btn-icon" onclick="cancelOrder(2)" title="Hủy đơn"><i class="icon icon-trash"></i></button>
+                    <td onclick="event.stopPropagation()">
+                      <button class="btn-icon" onclick="openEditModal(2)" title="Sửa"><img src="../images/sua.png" alt="Sửa" class="icon-img"></button>
+                      <button class="btn-icon" onclick="cancelOrder(2)" title="Hủy đơn"><img src="../images/huy.png" alt="Hủy" class="icon-img"></button>
                     </td>
                   </tr>
                 </tbody>
@@ -213,6 +210,28 @@
   <script src="../js/jquery-1.11.0.min.js"></script>
   <script src="js/admin.js"></script>
   <script>
+    function searchTable() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const tbody = document.getElementById('ordersBody');
+      const rows = tbody.getElementsByTagName('tr');
+      
+      for (let row of rows) {
+        const code = row.cells[0]?.textContent || '';
+        const customer = row.cells[1]?.textContent || '';
+        const email = row.cells[2]?.textContent || '';
+        const phone = row.cells[3]?.textContent || '';
+        
+        if (code.toLowerCase().includes(input) || 
+            customer.toLowerCase().includes(input) || 
+            email.toLowerCase().includes(input) || 
+            phone.toLowerCase().includes(input)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      }
+    }
+
     // Mock orders data with items
     const ordersData = {
       1: {
@@ -268,6 +287,7 @@
       document.getElementById('totalAmount').value = data.total;
       document.getElementById('orderStatus').value = data.status;
       document.getElementById('paymentMethod').value = data.payment;
+      document.getElementById('orderForm').dataset.orderId = id;
       openModal('orderModal');
     }
 
@@ -347,10 +367,72 @@
       }
     }
 
+    // Swipe to close modals
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    function handleSwipe(modal) {
+      if (touchStartY - touchEndY > 100) {
+        // Swiped up - close modal
+        modal.classList.add('closing');
+        setTimeout(() => {
+          modal.style.display = 'none';
+          modal.classList.remove('closing');
+        }, 300);
+      }
+    }
+
+    function addSwipeListener(modalId) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+
+      modal.addEventListener('touchstart', (e) => {
+        touchStartY = e.changedTouches[0].screenY;
+      }, false);
+
+      modal.addEventListener('touchend', (e) => {
+        touchEndY = e.changedTouches[0].screenY;
+        handleSwipe(modal);
+      }, false);
+    }
+
+    // Initialize swipe listeners
+    addSwipeListener('orderModal');
+    addSwipeListener('viewModal');
+
     document.getElementById('orderForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      showToast('Đơn hàng đã được lưu!');
+      const orderId = this.dataset.orderId;
+      if (orderId) {
+        // Edit mode - update existing order
+        const data = ordersData[orderId];
+        if (data) {
+          data.customerName = document.getElementById('customerName').value;
+          data.email = document.getElementById('customerEmail').value;
+          data.phone = document.getElementById('customerPhone').value;
+          data.address = document.getElementById('customerAddress').value;
+          data.total = parseInt(document.getElementById('totalAmount').value);
+          data.status = document.getElementById('orderStatus').value;
+          data.payment = document.getElementById('paymentMethod').value;
+          
+          // Update table row
+          const rows = document.querySelectorAll('#ordersBody tr');
+          rows.forEach(row => {
+            if (row.cells[0].textContent.trim() === data.code) {
+              row.cells[1].textContent = data.customerName;
+              row.cells[2].textContent = new Date(data.date).toLocaleDateString('vi-VN');
+              row.cells[3].textContent = formatCurrency(data.total);
+              row.cells[4].innerHTML = '<span class="badge badge-' + data.status + '">' + statusLabel(data.status) + '</span>';
+            }
+          });
+          showToast('Cập nhật đơn hàng thành công!');
+        }
+      } else {
+        // Add mode
+        showToast('Thêm đơn hàng mới thành công!');
+      }
       closeOrderModal();
+      this.dataset.orderId = ''; // Clear for next use
     });
   </script>
   
