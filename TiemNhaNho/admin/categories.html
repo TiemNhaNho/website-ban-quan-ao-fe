@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lí Danh Mục - Admin</title>
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../icomoon/icomoon.css">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body class="admin-layout">
+  <div class="admin-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="logo">Tiệm Nhà Nhỏ</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="icon icon-home"></i><span>Dashboard</span></a></li>
+          <li class="nav-item"><a href="orders.html" class="nav-link"><i class="icon icon-shopping-bag"></i><span>Quản lí Đơn Hàng</span></a></li>
+          <li class="nav-item"><a href="products.html" class="nav-link"><i class="icon icon-package"></i><span>Quản lí Sản Phẩm</span></a></li>
+          <li class="nav-item"><a href="customers.html" class="nav-link"><i class="icon icon-users"></i><span>Quản lí Khách Hàng</span></a></li>
+          <li class="nav-item"><a href="suppliers.html" class="nav-link"><i class="icon icon-truck"></i><span>Quản lí Nhà Cung Cấp</span></a></li>
+          <li class="nav-item active"><a href="categories.html" class="nav-link"><i class="icon icon-list"></i><span>Quản lí Danh Mục</span></a></li>
+          <li class="nav-item"><a href="coupons.html" class="nav-link"><i class="icon icon-ticket"></i><span>Quản lí Mã Giảm Giá</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="admin-header">
+        <div class="header-left">
+          <h1>Quản lí Danh Mục</h1>
+        </div>
+      </header>
+
+      <section class="page-content">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-header">
+              <h3>Danh Sách Danh Mục</h3>
+              <button class="btn btn-primary" onclick="openAddModal()">+ Thêm Danh Mục</button>
+            </div>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Tên Danh Mục</th>
+                  <th>Mô Tả</th>
+                  <th>Số Sản Phẩm</th>
+                  <th>Hành Động</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Nam</td>
+                  <td>Sản phẩm dành cho nam</td>
+                  <td>125</td>
+                  <td>
+                    <button class="btn-icon" onclick="viewCategory(1)"><i class="icon icon-eye"></i></button>
+                    <button class="btn-icon" onclick="editCategory(1)"><i class="icon icon-pencil"></i></button>
+                    <button class="btn-icon" onclick="deleteCategory(1)"><i class="icon icon-trash"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="categoryModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Thêm/Sửa Danh Mục</h2>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <form id="categoryForm">
+        <div class="form-group">
+          <label>Tên Danh Mục</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Mô Tả</label>
+          <textarea rows="3"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal()">Hủy</button>
+          <button type="submit" class="btn btn-primary">Lưu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openAddModal() { openModal('categoryModal'); }
+    function editCategory(id) { openAddModal(); }
+    function viewCategory(id) { showToast('Chi tiết danh mục ' + id); }
+    function deleteCategory(id) { if(confirmDelete('danh mục')) showToast('Đã xóa danh mục'); }
+    function closeModal() { closeModal('categoryModal'); }
+    document.getElementById('categoryForm').addEventListener('submit', function(e) { e.preventDefault(); showToast('Lưu danh mục thành công'); closeModal('categoryModal'); });
+  </script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

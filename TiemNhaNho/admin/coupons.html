@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lí Mã Giảm Giá - Admin</title>
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../icomoon/icomoon.css">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body class="admin-layout">
+  <div class="admin-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="logo">Tiệm Nhà Nhỏ</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="icon icon-home"></i><span>Dashboard</span></a></li>
+          <li class="nav-item"><a href="orders.html" class="nav-link"><i class="icon icon-shopping-bag"></i><span>Quản lí Đơn Hàng</span></a></li>
+          <li class="nav-item"><a href="products.html" class="nav-link"><i class="icon icon-package"></i><span>Quản lí Sản Phẩm</span></a></li>
+          <li class="nav-item"><a href="customers.html" class="nav-link"><i class="icon icon-users"></i><span>Quản lí Khách Hàng</span></a></li>
+          <li class="nav-item"><a href="suppliers.html" class="nav-link"><i class="icon icon-truck"></i><span>Quản lí Nhà Cung Cấp</span></a></li>
+          <li class="nav-item"><a href="categories.html" class="nav-link"><i class="icon icon-list"></i><span>Quản lí Danh Mục</span></a></li>
+          <li class="nav-item active"><a href="coupons.html" class="nav-link"><i class="icon icon-ticket"></i><span>Quản lí Mã Giảm Giá</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="admin-header">
+        <div class="header-left">
+          <h1>Quản lí Mã Giảm Giá</h1>
+        </div>
+      </header>
+
+      <section class="page-content">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-header">
+              <h3>Danh Sách Mã Giảm Giá</h3>
+              <button class="btn btn-primary" onclick="openAddModal()">+ Thêm Mã Giảm Giá</button>
+            </div>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Mã Coupon</th>
+                  <th>Loại Giảm Giá</th>
+                  <th>Giá Trị</th>
+                  <th>Ngày Bắt Đầu</th>
+                  <th>Ngày Kết Thúc</th>
+                  <th>Hành Động</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>SALE2025</td>
+                  <td>Phần Trăm</td>
+                  <td>20%</td>
+                  <td>01/01/2025</td>
+                  <td>31/12/2025</td>
+                  <td>
+                    <button class="btn-icon" onclick="viewCoupon(1)"><i class="icon icon-eye"></i></button>
+                    <button class="btn-icon" onclick="editCoupon(1)"><i class="icon icon-pencil"></i></button>
+                    <button class="btn-icon" onclick="deleteCoupon(1)"><i class="icon icon-trash"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="couponModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Thêm/Sửa Mã Giảm Giá</h2>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <form id="couponForm">
+        <div class="form-group">
+          <label>Mã Coupon</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Loại Giảm Giá</label>
+          <select required>
+            <option>Phần Trăm</option>
+            <option>Tiền Mặt</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Giá Trị</label>
+          <input type="number" required>
+        </div>
+        <div class="form-group">
+          <label>Ngày Bắt Đầu</label>
+          <input type="date" required>
+        </div>
+        <div class="form-group">
+          <label>Ngày Kết Thúc</label>
+          <input type="date" required>
+        </div>
+        <div class="form-group">
+          <label>Số Lần Dùng Tối Đa</label>
+          <input type="number">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal()">Hủy</button>
+          <button type="submit" class="btn btn-primary">Lưu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openAddModal() { openModal('couponModal'); }
+    function editCoupon(id) { openAddModal(); }
+    function viewCoupon(id) { showToast('Chi tiết mã giảm giá ' + id); }
+    function deleteCoupon(id) { if(confirmDelete('mã giảm giá')) showToast('Đã xóa mã giảm giá'); }
+    function closeModal() { closeModal('couponModal'); }
+    document.getElementById('couponForm').addEventListener('submit', function(e) { e.preventDefault(); showToast('Lưu mã giảm giá thành công'); closeModal('couponModal'); });
+  </script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

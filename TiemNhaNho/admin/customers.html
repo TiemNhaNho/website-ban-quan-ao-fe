@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lí Khách Hàng - Admin</title>
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../icomoon/icomoon.css">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body class="admin-layout">
+  <div class="admin-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="logo">Tiệm Nhà Nhỏ</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="icon icon-home"></i><span>Dashboard</span></a></li>
+          <li class="nav-item"><a href="orders.html" class="nav-link"><i class="icon icon-shopping-bag"></i><span>Quản lí Đơn Hàng</span></a></li>
+          <li class="nav-item"><a href="products.html" class="nav-link"><i class="icon icon-package"></i><span>Quản lí Sản Phẩm</span></a></li>
+          <li class="nav-item active"><a href="customers.html" class="nav-link"><i class="icon icon-users"></i><span>Quản lí Khách Hàng</span></a></li>
+          <li class="nav-item"><a href="suppliers.html" class="nav-link"><i class="icon icon-truck"></i><span>Quản lí Nhà Cung Cấp</span></a></li>
+          <li class="nav-item"><a href="categories.html" class="nav-link"><i class="icon icon-list"></i><span>Quản lí Danh Mục</span></a></li>
+          <li class="nav-item"><a href="coupons.html" class="nav-link"><i class="icon icon-ticket"></i><span>Quản lí Mã Giảm Giá</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="admin-header">
+        <div class="header-left">
+          <h1>Quản lí Khách Hàng</h1>
+        </div>
+      </header>
+
+      <section class="page-content">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-header">
+              <h3>Danh Sách Khách Hàng</h3>
+              <button class="btn btn-primary" onclick="openAddModal()">+ Thêm Khách Hàng</button>
+            </div>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Tên</th>
+                  <th>Email</th>
+                  <th>SĐT</th>
+                  <th>Tổng Đơn</th>
+                  <th>Hành Động</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Nguyễn Văn A</td>
+                  <td>nguyenvana@email.com</td>
+                  <td>0123456789</td>
+                  <td>5</td>
+                  <td>
+                    <button class="btn-icon" onclick="viewCustomer(1)"><i class="icon icon-eye"></i></button>
+                    <button class="btn-icon" onclick="editCustomer(1)"><i class="icon icon-pencil"></i></button>
+                    <button class="btn-icon" onclick="deleteCustomer(1)"><i class="icon icon-trash"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="customerModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Thêm/Sửa Khách Hàng</h2>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <form id="customerForm">
+        <div class="form-group">
+          <label>Tên Khách Hàng</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" required>
+        </div>
+        <div class="form-group">
+          <label>SĐT</label>
+          <input type="tel" required>
+        </div>
+        <div class="form-group">
+          <label>Địa Chỉ</label>
+          <textarea rows="3"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal()">Hủy</button>
+          <button type="submit" class="btn btn-primary">Lưu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openAddModal() { openModal('customerModal'); }
+    function editCustomer(id) { openAddModal(); }
+    function viewCustomer(id) { showToast('Chi tiết khách hàng ' + id); }
+    function deleteCustomer(id) { if(confirmDelete('khách hàng')) showToast('Đã xóa khách hàng'); }
+    function closeModal() { closeModal('customerModal'); }
+    document.getElementById('customerForm').addEventListener('submit', function(e) { e.preventDefault(); showToast('Lưu khách hàng thành công'); closeModal('customerModal'); });
+  </script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
