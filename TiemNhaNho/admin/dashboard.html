@@ -8,6 +8,10 @@
   <link rel="stylesheet" href="../icomoon/icomoon.css">
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="css/admin-style.css">
+  <style>
+    .chart-container { background: #fff; padding: 1rem; border-radius: 10px; box-shadow: 0 6px 18px rgba(16,24,40,0.06); height: 320px; }
+    .chart-container canvas { width: 100% !important; height: 100% !important; }
+  </style>
 </head>
 <body class="admin-layout">
   <div class="admin-container">
@@ -21,25 +25,25 @@
         <ul class="nav-list">
           <li class="nav-item active">
             <a href="dashboard.html" class="nav-link">
-              <i class="icon icon-home"></i>
+              <i class="icon icon-screen-full"></i>
               <span>Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
             <a href="orders.html" class="nav-link">
-              <i class="icon icon-shopping-bag"></i>
+              <i class="icon icon-shopping-cart"></i>
               <span>Quản lí Đơn Hàng</span>
             </a>
           </li>
           <li class="nav-item">
             <a href="products.html" class="nav-link">
-              <i class="icon icon-package"></i>
+              <i class="icon icon-tags"></i>
               <span>Quản lí Sản Phẩm</span>
             </a>
           </li>
           <li class="nav-item">
             <a href="customers.html" class="nav-link">
-              <i class="icon icon-users"></i>
+              <i class="icon icon-user"></i>
               <span>Quản lí Khách Hàng</span>
             </a>
           </li>
@@ -51,13 +55,14 @@
           </li>
           <li class="nav-item">
             <a href="categories.html" class="nav-link">
-              <i class="icon icon-list"></i>
+          <i class="icon icon-add"></i>
+             
               <span>Quản lí Danh Mục</span>
             </a>
           </li>
           <li class="nav-item">
             <a href="coupons.html" class="nav-link">
-              <i class="icon icon-ticket"></i>
+            <i class="icon icon-tags1"></i>
               <span>Quản lí Mã Giảm Giá</span>
             </a>
           </li>
@@ -82,11 +87,13 @@
           </div>
           <div class="user-menu">
             <div class="user-avatar">
-              <img src="../images/avatar.jpg" alt="Admin">
+              <img src="../images/avatar.png" alt="Admin">
+                <a href="#" class="user-name">Admin</a>
             </div>
             <div class="dropdown">
-              <a href="#" class="user-name">Admin</a>
-              <button class="logout-btn">Đăng xuất</button>
+                   <button class="logout-btn">Đăng xuất</button>
+            
+           
             </div>
           </div>
         </div>
@@ -138,11 +145,11 @@
           <!-- Charts Row -->
           <div class="charts-row">
             <div class="chart-card full-width">
-              <h3>Doanh Thu Theo Tháng</h3>
-              <div class="chart-placeholder">
-                <p>Biểu đồ doanh thu (cần integrate với Chart.js)</p>
+                <h3>Doanh Thu Theo Tháng</h3>
+                <div class="chart-container">
+                  <canvas id="revenueChart" height="140"></canvas>
+                </div>
               </div>
-            </div>
           </div>
 
           <!-- Recent Orders & Top Products -->
@@ -226,5 +233,62 @@
 
   <script src="../js/jquery-1.11.0.min.js"></script>
   <script src="js/admin.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const ctx = document.getElementById('revenueChart').getContext('2d');
+
+      // Sample monthly revenue data (replace with real data later)
+      const labels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const data = [4532000, 5200000, 6100000, 4800000, 7300000, 6900000, 7500000, 8200000, 9000000, 8600000, 9200000, 10320000];
+
+      // Gradient fill
+      const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+      gradient.addColorStop(0, 'rgba(102,126,234,0.6)');
+      gradient.addColorStop(1, 'rgba(118,75,162,0.05)');
+
+      // Create chart
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Doanh thu (VNĐ)',
+            data: data,
+            fill: true,
+            backgroundColor: gradient,
+            borderColor: '#667eea',
+            tension: 0.3,
+            pointRadius: 4,
+            pointBackgroundColor: '#fff',
+            pointBorderColor: '#667eea'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              ticks: {
+                callback: function(value) {
+                  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND', maximumFractionDigits:0 }).format(value);
+                }
+              }
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND', maximumFractionDigits:0 }).format(context.parsed.y);
+                }
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>
