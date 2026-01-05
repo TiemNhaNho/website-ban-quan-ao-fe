@@ -1,99 +1,103 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard - Tiệm Nhà Nhỏ Admin</title>
-    <link rel="stylesheet" href="../css/normalize.css" />
-    <link rel="stylesheet" href="../icomoon/icomoon.css" />
-    <link rel="stylesheet" href="../style.css" />
-    <link rel="stylesheet" href="css/admin-style.css" />
-  </head>
-  <body class="admin-layout">
-    <div class="admin-container">
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <div class="sidebar-header">
-          <h2 class="logo">Tiệm Nhà Nhỏ</h2>
-          <p class="subtitle">Xin chào Admin !</p>
-        </div>
-        <nav class="sidebar-nav">
-          <ul class="nav-list">
-            <li class="nav-item active">
-              <a href="dashboard.html" class="nav-link">
-                <i class="icon icon-home"></i>
-                <span>Dashboard</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="orders.html" class="nav-link">
-                <i class="icon icon-shopping-bag"></i>
-                <span>Quản lí Đơn Hàng</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="products.html" class="nav-link">
-                <i class="icon icon-package"></i>
-                <span>Quản lí Sản Phẩm</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="customers.html" class="nav-link">
-                <i class="icon icon-users"></i>
-                <span>Quản lí Khách Hàng</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="suppliers.html" class="nav-link">
-                <i class="icon icon-truck"></i>
-                <span>Quản lí Nhà Cung Cấp</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="categories.html" class="nav-link">
-                <i class="icon icon-list"></i>
-                <span>Quản lí Danh Mục</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="coupons.html" class="nav-link">
-                <i class="icon icon-ticket"></i>
-                <span>Quản lí Mã Giảm Giá</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </aside>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Tiệm Nhà Nhỏ Admin</title>
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../icomoon/icomoon.css">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="css/admin-style.css">
+  <style>
+    .chart-container { background: #fff; padding: 1rem; border-radius: 10px; box-shadow: 0 6px 18px rgba(16,24,40,0.06); height: 320px; }
+    .chart-container canvas { width: 100% !important; height: 100% !important; }
+  </style>
+</head>
+<body class="admin-layout">
+  <div class="admin-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="logo">Tiệm Nhà Nhỏ</h2>
+        <p class="subtitle">Xin chào Admin !</p>
+      </div>
+      <nav class="sidebar-nav">
+        <ul class="nav-list">
+          <li class="nav-item active">
+            <a href="dashboard.html" class="nav-link">
+              <i class="icon icon-screen-full"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="orders.html" class="nav-link">
+              <i class="icon icon-shopping-cart"></i>
+              <span>Quản lí Đơn Hàng</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="products.html" class="nav-link">
+              <i class="icon icon-tags"></i>
+              <span>Quản lí Sản Phẩm</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="customers.html" class="nav-link">
+              <i class="icon icon-user"></i>
+              <span>Quản lí Khách Hàng</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="suppliers.html" class="nav-link">
+              <i class="icon icon-truck"></i>
+              <span>Quản lí Nhà Cung Cấp</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="categories.html" class="nav-link">
+          <i class="icon icon-add"></i>
+             
+              <span>Quản lí Danh Mục</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="coupons.html" class="nav-link">
+            <i class="icon icon-tags1"></i>
+              <span>Quản lí Mã Giảm Giá</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
 
-      <!-- Main Content -->
-      <main class="main-content">
-        <!-- Header -->
-        <header class="admin-header">
-          <div class="header-left">
-            <button class="menu-toggle">
-              <i class="icon icon-menu"></i>
-            </button>
-            <h1>Dashboard</h1>
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button class="menu-toggle">
+            <i class="icon icon-menu"></i>
+          </button>
+          <h1>Dashboard</h1>
+        </div>
+        <div class="header-right">
+          <div class="search-box">
+            <input type="text" placeholder="Tìm kiếm...">
+            <i class="icon icon-search"></i>
           </div>
-          <div class="header-right">
-            <div class="search-box">
-              <input type="text" placeholder="Tìm kiếm..." />
-              <i class="icon icon-search"></i>
-            </div>
-            <div class="user-menu">
-              <div class="user-avatar">
-                <img
-                  src="https://img.freepik.com/premium-vector/man-face-vector_1072857-7641.jpg?w=54"
-                  alt="Admin"
-                />
+          <div class="user-menu">
+            <div class="user-avatar">
+              <img src="../images/avatar.png" alt="Admin">
                 <a href="#" class="user-name">Admin</a>
-              </div>
-              <div class="dropdown">
-                <button class="logout-btn">Đăng xuất</button>
-              </div>
+            </div>
+            <div class="dropdown">
+                   <button class="logout-btn">Đăng xuất</button>
+            
+           
             </div>
           </div>
-        </header>
+        </div>
+      </header>
 
         <!-- Dashboard Content -->
         <section class="dashboard-content">
@@ -138,15 +142,15 @@
               </div>
             </div>
 
-            <!-- Charts Row -->
-            <div class="charts-row">
-              <div class="chart-card full-width">
+          <!-- Charts Row -->
+          <div class="charts-row">
+            <div class="chart-card full-width">
                 <h3>Doanh Thu Theo Tháng</h3>
-                <div class="chart-placeholder">
-                  <p>Biểu đồ doanh thu (cần integrate với Chart.js)</p>
+                <div class="chart-container">
+                  <canvas id="revenueChart" height="140"></canvas>
                 </div>
               </div>
-            </div>
+          </div>
 
             <!-- Recent Orders & Top Products -->
             <div class="dashboard-grid">
@@ -227,7 +231,64 @@
       </main>
     </div>
 
-    <script src="../js/jquery-1.11.0.min.js"></script>
-    <script src="js/admin.js"></script>
-  </body>
+  <script src="../js/jquery-1.11.0.min.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const ctx = document.getElementById('revenueChart').getContext('2d');
+
+      // Sample monthly revenue data (replace with real data later)
+      const labels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const data = [4532000, 5200000, 6100000, 4800000, 7300000, 6900000, 7500000, 8200000, 9000000, 8600000, 9200000, 10320000];
+
+      // Gradient fill
+      const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+      gradient.addColorStop(0, 'rgba(102,126,234,0.6)');
+      gradient.addColorStop(1, 'rgba(118,75,162,0.05)');
+
+      // Create chart
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Doanh thu (VNĐ)',
+            data: data,
+            fill: true,
+            backgroundColor: gradient,
+            borderColor: '#667eea',
+            tension: 0.3,
+            pointRadius: 4,
+            pointBackgroundColor: '#fff',
+            pointBorderColor: '#667eea'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              ticks: {
+                callback: function(value) {
+                  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND', maximumFractionDigits:0 }).format(value);
+                }
+              }
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND', maximumFractionDigits:0 }).format(context.parsed.y);
+                }
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
 </html>
