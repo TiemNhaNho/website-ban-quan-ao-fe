@@ -47,28 +47,23 @@
 
       <ul class="cat-list">
         <li class="cat-list-item">
-          <a href="shop.html" title="Men Jackets">Men Jackets</a>
+          <a href="/shop" title="Men Jackets">Men Jackets</a>
         </li>
         <li class="cat-list-item">
-          <a href="shop.html" title="Fashion">Fashion</a>
+          <a href="/shop" title="Fashion">Fashion</a>
         </li>
         <li class="cat-list-item">
-          <a href="shop.html" title="Casual Wears">Casual Wears</a>
+          <a href="/shop" title="Casual Wears">Casual Wears</a>
         </li>
         <li class="cat-list-item">
           </div>
           </div>
           </section>
 
-          <div data-include="header"></div>                              
-                      <script src="js/include.js"></script>
+          <%- include('includes/header') %>                      
                       <script src="js/jquery-1.11.0.min.js"></script>
                       <script src="js/plugins.js"></script>
-                      <script src="js/script.js"></script>
-                        
-                      </ul>
-                    </li>
-        <li class="cat-list-item">       
+                      <script src="js/script.js"></script>                     
                   </ul>
                 </div>
 
@@ -86,135 +81,150 @@
         <div class="col-md-12">
           <div class="breadcrumbs">
             <span class="item">
-              <a href="index.html">Home /</a>
+              <a href="/">Home /</a>
             </span>
             <span class="item">
-              <a href="shop.html">Shop /</a>
+              <a href="/shop">Shop /</a>
             </span>
-            <span class="item">Checkout</span>
+            <span class="item">Cart</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="shopify-cart checkout-wrap padding-large">
+  <section class="shopify-cart padding-large">
     <div class="container">
-      <form class="form-group">
-        <div class="row d-flex flex-wrap">
-          <div class="col-lg-6">
-            <h2 class="section-title">Billing Details</h2>
-            <div class="billing-details">
-              <label for="fname">First Name*</label>
-              <input type="text" id="fname" name="firstname" class="form-control">
-              <label for="lname">Last Name*</label>
-              <input type="text" id="lname" name="lastname" class="form-control">
-              <label for="cname">Company Name(optional)*</label>
-              <input type="text" id="cname" name="companyname" class="form-control">
-              <label for="cname">Country / Region*</label>
-              <select class="form-select form-control" aria-label="Default select example">
-                <option selected="" hidden="">United States</option>
-                <option value="1">UK</option>
-                <option value="2">Australia</option>
-                <option value="3">Canada</option>
-              </select>
-              <label for="address">Street Address*</label>
-              <input type="text" id="adr" name="address" placeholder="House number and street name"
-                class="form-control">
-              <input type="text" id="adr" name="address" placeholder="Appartments, suite, etc." class="form-control">
-              <label for="city">Town / City *</label>
-              <input type="text" id="city" name="city" class="form-control">
-              <label for="state">State *</label>
-              <select class="form-select form-control" aria-label="Default select example">
-                <option selected="" hidden="">Florida</option>
-                <option value="1">New York</option>
-                <option value="2">Chicago</option>
-                <option value="3">Texas</option>
-                <option value="3">San Jose</option>
-                <option value="3">Houston</option>
-              </select>
-              <label for="zip">Zip Code *</label>
-              <input type="text" id="zip" name="zip" class="form-control">
-              <label for="email">Phone *</label>
-              <input type="text" id="phone" name="phone" class="form-control">
-              <label for="email">Email address *</label>
-              <input type="text" id="email" name="email" class="form-control">
-            </div>
+      <div class="cart-table">
+        <div class="cart-header border-bottom ">
+          <div class="row d-flex">
+            <h3 class="cart-title col-lg-4">Product</h3>
+            <h3 class="cart-title col-lg-3">Quantity</h3>
+            <h3 class="cart-title col-lg-4">Subtotal</h3>
           </div>
-          <div class="col-lg-6">
-            <h2 class="section-title">Additional Information</h2>
-            <div class="billing-details">
-              <label for="fname">Order notes (optional)</label>
-              <textarea class="form-control"
-                placeholder="Notes about your order. Like special notes for delivery."></textarea>
-            </div>
-            <div class="your-order">
-              <h2 class="section-title">Cart Totals</h2>
-              <div class="total-price">
-                <table cellspacing="0" class="table">
-                  <tbody>
-                    <tr class="subtotal">
-                      <th>Subtotal</th>
-                      <td data-title="Subtotal">
-                        <span class="price-amount amount text-primary">
-                          <bdi>
-                            <span class="price-currency-symbol">$</span>2,370.00 </bdi>
-                        </span>
-                      </td>
-                    </tr>
-                    <tr class="order-total">
-                      <th>Total</th>
-                      <td data-title="Total">
-                        <span class="price-amount amount text-primary">
-                          <bdi>
-                            <span class="price-currency-symbol">$</span>2,370.00 </bdi>
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="list-group mt-5 mb-3">
-                  <label class="list-group-item d-flex">
-                    <input class="form-check-input flex-shrink-0" type="radio" name="listGroupRadios"
-                      id="listGroupRadios1" value="" checked>
-                    <div>
-                      <strong>Direct bank transfer</strong>
-                      <p>Make your payment directly into our bank account. Please use your Order ID. Your order will
-                        shipped after funds have cleared in our account.</p>
-                    </div>
-                  </label>
-                  <label class="list-group-item d-flex">
-                    <input class="form-check-input flex-shrink-0" type="radio" name="listGroupRadios"
-                      id="listGroupRadios2" value="">
-                    <div>
-                      <strong>Check payments</strong>
-                      <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store
-                        Postcode.</p>
-                    </div>
-                  </label>
-                  <label class="list-group-item d-flex">
-                    <input class="form-check-input flex-shrink-0" type="radio" name="listGroupRadios"
-                      id="listGroupRadios3" value="">
-                    <div>
-                      <strong>Cash on delivery</strong>
-                      <p>Pay with cash upon delivery.</p>
-                    </div>
-                  </label>
-                  <label class="list-group-item d-flex">
-                    <input class="form-check-input flex-shrink-0" type="radio" name="listGroupRadios"
-                      id="listGroupRadios3" value="">
-                    <div>
-                      <strong>Paypal</strong>
-                      <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
-                    </div>
-                  </label>
+        </div>
+        <div class="cart-item border-bottom padding-small">
+          <div class="row">
+            <div class="col-lg-4 col-md-3">
+              <div class="row cart-info d-flex flex-wrap">
+                <div class="col-lg-5">
+                  <div class="card-image">
+                    <img src="images/selling-products6.jpg" alt="cloth" class="img-fluid">
+                  </div>
                 </div>
-                <button type="submit" name="submit" class="btn btn-dark btn-full btn-medium">Place an order</button>
+                <div class="col-lg-4">
+                  <div class="card-detail">
+                    <h3 class="card-title">
+                      <a href="#">Iphone 13</a>
+                    </h3>
+                    <div class="card-price">
+                      <span class="money text-primary" data-currency-usd="$1200.00">$1500.00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-7">
+              <div class="row d-flex">
+                <div class="col-md-6">
+                  <div class="qty-number d-flex align-items-center justify-content-start">
+                    <button class="decrement-button">-</button>
+                    <input type="text" name="quantity" class="spin-number-output" value="1" min="1" max="100">
+                    <button class="increment-button">+</button>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="total-price">
+                    <span class="money text-primary">$1500.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-1 col-md-2">
+              <div class="cart-remove">
+                <a href="#"><i class="icon icon-close"></i></a>
               </div>
             </div>
           </div>
         </div>
-      </form>
+        <div class="cart-item border-bottom padding-small">
+          <div class="row">
+            <div class="col-lg-4 col-md-3">
+              <div class="row cart-info d-flex flex-wrap">
+                <div class="col-lg-5">
+                  <div class="card-image">
+                    <img src="images/selling-products7.jpg" alt="cloth" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="card-detail">
+                    <h3 class="card-title">
+                      <a href="#">Pink watch</a>
+                    </h3>
+                    <div class="card-price">
+                      <span class="money text-primary" data-currency-usd="$1200.00">$870.00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-7">
+              <div class="row d-flex">
+                <div class="col-lg-6">
+                  <div class="qty-number d-flex align-items-center justify-content-start">
+                    <button class="decrement-button">-</button>
+                    <input type="text" name="quantity" class="spin-number-output" value="1" min="1" max="100">
+                    <button class="increment-button">+</button>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="total-price">
+                    <span class="money text-primary">$870.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-1 col-md-2">
+              <div class="cart-remove">
+                <a href="#"><i class="icon icon-close"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cart-totals">
+        <h2 class="section-title">Cart Totals</h2>
+        <div class="total-price">
+          <table cellspacing="0" class="table">
+            <tbody>
+              <tr class="subtotal">
+                <th>Subtotal</th>
+                <td data-title="Subtotal">
+                  <span class="price-amount amount text-primary">
+                    <bdi>
+                      <span class="price-currency-symbol">$</span>2,370.00
+                    </bdi>
+                  </span>
+                </td>
+              </tr>
+              <tr class="order-total">
+                <th>Total</th>
+                <td data-title="Total">
+                  <span class="price-amount amount text-primary">
+                    <bdi>
+                      <span class="price-currency-symbol">$</span>2,370.00</bdi>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="button-wrap">
+          <a href="/cart"><button class="btn btn-dark btn-medium">Update Cart</button></a>
+          <a href="/shop"><button class="btn btn-dark btn-medium">Continue Shopping</button></a>
+          <a href="/checkout"><button class="btn btn-dark btn-medium">Proceed to checkout</button></a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -336,13 +346,13 @@
               <h5 class="widget-title">Ultras</h5>
               <ul class="menu-list list-unstyled">
                 <li class="menu-item">
-                  <a href="about.html">About us</a>
+                  <a href="/about">About us</a>
                 </li>
                 <li class="menu-item">
                   <a href="#">Conditions </a>
                 </li>
                 <li class="menu-item">
-                  <a href="blog.html">Our Journals</a>
+                  <a href="/blog">Our Journals</a>
                 </li>
                 <li class="menu-item">
                   <a href="#">Careers</a>
@@ -361,10 +371,10 @@
               <h5 class="widget-title">Customer Service</h5>
               <ul class="menu-list list-unstyled">
                 <li class="menu-item">
-                  <a href="faqs.html">FAQ</a>
+                  <a href="/faqs">FAQ</a>
                 </li>
                 <li class="menu-item">
-                  <a href="contact.html">Contact</a>
+                  <a href="/contact">Contact</a>
                 </li>
                 <li class="menu-item">
                   <a href="#">Privacy Policy</a>

@@ -47,31 +47,31 @@
 
       <ul class="cat-list">
         <li class="cat-list-item">
-          <a href="shop.html" title="Men Jackets">Men Jackets</a>
+          <a href="/shop" title="Men Jackets">Men Jackets</a>
         </li>
         <li class="cat-list-item">
-          <a href="shop.html" title="Fashion">Fashion</a>
+          <a href="/shop" title="Fashion">Fashion</a>
         </li>
         <li class="cat-list-item">
-          <a href="shop.html" title="Casual Wears">Casual Wears</a>
+          <a href="/shop" title="Casual Wears">Casual Wears</a>
         </li>
         <li class="cat-list-item">
-          <a href="shop.html" title="Women">Women</a>
+          <a href="/shop" title="Women">Women</a>
         </li>
         <li class="cat-list-item">
-          <a href="shop.html" title="Trending">Trending</a>
+          <a href="/shop" title="Trending">Trending</a>
         </li>
         <li class="cat-list-item">
-          <a href="shop.html" title="Hoodie">Hoodie</a>
+          <a href="/shop" title="Hoodie">Hoodie</a>
         </li>
         <li class="cat-list-item">
-          <a href="shop.html" title="Kids">Kids</a>
+          <a href="/shop" title="Kids">Kids</a>
         </li>
       </ul>
     </div>
   </div>
 
-  <div data-include="header"></div>
+  <%- include('includes/header') %>
 
   <section class="site-banner padding-small bg-light-grey">
     <div class="container">
@@ -79,10 +79,10 @@
         <div class="col-md-12">
           <div class="breadcrumbs">
             <span class="item">
-              <a href="index.html">Home /</a>
+              <a href="/">Home /</a>
             </span>
             <span class="item">
-              <a href="shop.html">Shop /</a>
+              <a href="/shop">Shop /</a>
             </span>
             <span class="item">Shop Single</span>
           </div>
@@ -424,7 +424,7 @@
       <div class="section-header d-flex flex-wrap align-items-center justify-content-between">
         <h2 class="section-title">our Journal</h2>
         <div class="btn-wrap align-right">
-          <a href="blog.html" class="d-flex align-items-center">Read All Articles <i
+          <a href="/blog" class="d-flex align-items-center">Read All Articles <i
               class="icon icon icon-arrow-io"></i>
           </a>
         </div>
@@ -432,7 +432,7 @@
       <div class="row d-flex flex-wrap">
         <article class="col-md-4 post-item">
           <div class="image-holder zoom-effect">
-            <a href="single-post.html">
+            <a href="/single-post">
               <img src="images/post-img1.jpg" alt="post" class="post-image">
             </a>
           </div>
@@ -443,15 +443,15 @@
             </div>
             <div class="post-header">
               <h3 class="post-title">
-                <a href="single-post.html">top 10 casual look ideas to dress up your kids</a>
+                <a href="/single-post">top 10 casual look ideas to dress up your kids</a>
               </h3>
-              <a href="blog.html" class="blog-categories">Fashion</a>
+              <a href="/blog" class="blog-categories">Fashion</a>
             </div>
           </div>
         </article>
         <article class="col-md-4 post-item">
           <div class="image-holder zoom-effect">
-            <a href="single-post.html">
+            <a href="/single-post">
               <img src="images/post-img2.jpg" alt="post" class="post-image">
             </a>
           </div>
@@ -462,15 +462,15 @@
             </div>
             <div class="post-header">
               <h3 class="post-title">
-                <a href="single-post.html">Latest trends of wearing street wears supremely</a>
+                <a href="/single-post">Latest trends of wearing street wears supremely</a>
               </h3>
-              <a href="blog.html" class="blog-categories">Trending</a>
+              <a href="/blog" class="blog-categories">Trending</a>
             </div>
           </div>
         </article>
         <article class="col-md-4 post-item">
           <div class="image-holder zoom-effect">
-            <a href="single-post.html">
+            <a href="/single-post">
               <img src="images/post-img3.jpg" alt="post" class="post-image">
             </a>
           </div>
@@ -481,9 +481,9 @@
             </div>
             <div class="post-header">
               <h3 class="post-title">
-                <a href="single-post.html">types of comfortable clothes ideas for women</a>
+                <a href="/single-post">types of comfortable clothes ideas for women</a>
               </h3>
-              <a href="blog.html" class="blog-categories">Inspiration</a>
+              <a href="/blog" class="blog-categories">Inspiration</a>
             </div>
           </div>
         </article>
@@ -601,13 +601,13 @@
               <h5 class="widget-title">Ultras</h5>
               <ul class="menu-list list-unstyled">
                 <li class="menu-item">
-                  <a href="about.html">About us</a>
+                  <a href="/about">About us</a>
                 </li>
                 <li class="menu-item">
                   <a href="#">Conditions </a>
                 </li>
                 <li class="menu-item">
-                  <a href="blog.html">Our Journals</a>
+                  <a href="/blog">Our Journals</a>
                 </li>
                 <li class="menu-item">
                   <a href="#">Careers</a>
@@ -626,10 +626,10 @@
               <h5 class="widget-title">Customer Service</h5>
               <ul class="menu-list list-unstyled">
                 <li class="menu-item">
-                  <a href="faqs.html">FAQ</a>
+                  <a href="/faqs">FAQ</a>
                 </li>
                 <li class="menu-item">
-                  <a href="contact.html">Contact</a>
+                  <a href="/contact">Contact</a>
                 </li>
                 <li class="menu-item">
                   <a href="#">Privacy Policy</a>
@@ -733,9 +733,9 @@
     initIncrementDecrement();
   </script>
 
-  <div data-include="footer"></div>
+  <%- include('includes/footer') %>
 
-  <script src="js/include.js"></script>
+  
   <script src="js/jquery-1.11.0.min.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>

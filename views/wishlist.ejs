@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ultras - Clothing Store eCommerce Store HTML Website Template</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="author" content="" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="icomoon/icomoon.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="css/vendor.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- script
+    ================================================== -->
+    <script src="js/modernizr.js"></script>
+  </head>
+
+  <body>
+    <div class="preloader-wrapper">
+      <div class="preloader"></div>
+    </div>
+
+    <div class="search-popup">
+      <div class="search-popup-container">
+        <form role="search" method="get" class="search-form" action="">
+          <input
+            type="search"
+            id="search-form"
+            class="search-field"
+            placeholder="Type and press enter"
+            value=""
+            name="s"
+          />
+          <button type="submit" class="search-submit">
+            <a href="#"><i class="icon icon-search"></i></a>
+          </button>
+        </form>
+
+        <h5 class="cat-list-title">Browse Categories</h5>
+
+        <ul class="cat-list">
+          <li class="cat-list-item">
+            <a href="/shop" title="Men Jackets">Men Jackets</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="/shop" title="Fashion">Fashion</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="/shop" title="Casual Wears">Casual Wears</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="/shop" title="Women">Women</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="/shop" title="Trending">Trending</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="/shop" title="Hoodie">Hoodie</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="/shop" title="Kids">Kids</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <%- include('includes/header') %>
+
+    <section class="site-banner padding-small bg-light-grey">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="breadcrumbs">
+              <span class="item">
+                <a href="/">Home /</a>
+              </span>
+              <span class="item">
+                <a href="/shop">Shop /</a>
+              </span>
+              <span class="item">Wishlist</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wishlist padding-large">
+      <div class="container">
+        <div class="wishlist-table">
+          <div class="wislist-header border-bottom">
+            <div class="row d-flex">
+              <h3 class="wishlist-title col-lg-4">Product</h3>
+              <h3 class="wishlist col-lg-3">Unit Price</h3>
+              <h3 class="wishlist col-lg-4">Stock Status</h3>
+            </div>
+          </div>
+          <div class="wishlist-item border-bottom padding-small">
+            <div class="row align-items-center">
+              <div class="col-lg-4 col-md-3">
+                <div class="row wishlist-info d-flex flex-wrap">
+                  <div class="col-lg-5">
+                    <div class="card-image">
+                      <img
+                        src="images/selling-products6.jpg"
+                        alt="cloth"
+                        class="img-fluid"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="card-detail">
+                      <h3 class="card-title">
+                        <a href="#">Iphone 13</a>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-7">
+                <div class="row d-flex">
+                  <div class="col-md-6">
+                    <div class="unit-price">
+                      <span class="money text-primary">$870.00</span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="stock-status">
+                      <span>In stock</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2">
+                <div class="wishlist-remove">
+                  <a href="#"><i class="icon icon-close"></i></a>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-dark btn-wrap wishlist-link d-flex align-items-center"
+                >
+                  add to cart <i class="icon icon-arrow-io"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="wishlist-item border-bottom padding-small">
+            <div class="row">
+              <div class="col-lg-4 col-md-3">
+                <div class="row wishlist-info d-flex flex-wrap">
+                  <div class="col-lg-5">
+                    <div class="card-image">
+                      <img
+                        src="images/selling-products7.jpg"
+                        alt="cloth"
+                        class="img-fluid"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="card-detail">
+                      <h3 class="card-title">
+                        <a href="#">Pink watch</a>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-7">
+                <div class="row d-flex">
+                  <div class="col-lg-6">
+                    <div class="unit-price">
+                      <span class="money text-primary">$870.00</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="stock-status">
+                      <span>In stock</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2">
+                <div class="wishlist-remove">
+                  <a href="#"><i class="icon icon-close"></i></a>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-dark btn-wrap cart-link d-flex align-items-center"
+                >
+                  add to cart <i class="icon icon-arrow-io"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="subscribe" class="bg-light-grey padding-large">
+      <div class="container">
+        <div class="row">
+          <div class="block-text col-md-6">
+            <div class="section-header">
+              <h2 class="section-title">Get 25% off Discount Coupons</h2>
+            </div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictumst
+              amet, metus, sit massa posuere maecenas. At tellus ut nunc amet
+              vel egestas.
+            </p>
+          </div>
+          <div class="subscribe-content col-md-6">
+            <form id="form" class="d-flex justify-content-between">
+              <input
+                type="text"
+                name="email"
+                placeholder="Enter your email addresss here"
+              />
+              <button class="btn btn-dark">Subscribe Now</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="instagram" class="padding-large">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Follow our instagram</h2>
+        </div>
+        <p>
+          Our official Instagram account <a href="#">@ultras</a> or
+          <a href="#">#ultras_clothing</a>
+        </p>
+        <div class="row d-flex flex-wrap justify-content-between">
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <figure class="zoom-effect">
+              <img
+                src="images/insta-image1.jpg"
+                alt="instagram"
+                class="insta-image"
+              />
+              <i class="icon icon-instagram"></i>
+            </figure>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <figure class="zoom-effect">
+              <img
+                src="images/insta-image2.jpg"
+                alt="instagram"
+                class="insta-image"
+              />
+              <i class="icon icon-instagram"></i>
+            </figure>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <figure class="zoom-effect">
+              <img
+                src="images/insta-image3.jpg"
+                alt="instagram"
+                class="insta-image"
+              />
+              <i class="icon icon-instagram"></i>
+            </figure>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <figure class="zoom-effect">
+              <img
+                src="images/insta-image4.jpg"
+                alt="instagram"
+                class="insta-image"
+              />
+              <i class="icon icon-instagram"></i>
+            </figure>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <figure class="zoom-effect">
+              <img
+                src="images/insta-image5.jpg"
+                alt="instagram"
+                class="insta-image"
+              />
+              <i class="icon icon-instagram"></i>
+            </figure>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <figure class="zoom-effect">
+              <img
+                src="images/insta-image6.jpg"
+                alt="instagram"
+                class="insta-image"
+              />
+              <i class="icon icon-instagram"></i>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="shipping-information">
+      <hr />
+      <div class="container">
+        <div
+          class="row d-flex flex-wrap align-items-center justify-content-between"
+        >
+          <div class="col-md-3 col-sm-6">
+            <div class="icon-box">
+              <i class="icon icon-truck"></i>
+              <h4 class="block-title">
+                <strong>Free shipping</strong> Over $200
+              </h4>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="icon-box">
+              <i class="icon icon-return"></i>
+              <h4 class="block-title">
+                <strong>Money back</strong> Return within 7 days
+              </h4>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="icon-box">
+              <i class="icon icon-tags1"></i>
+              <h4 class="block-title">
+                <strong>Buy 4 get 5th</strong> 50% off
+              </h4>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="icon-box">
+              <i class="icon icon-help_outline"></i>
+              <h4 class="block-title">
+                <strong>Any questions?</strong> experts are ready
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+    </section>
+
+    <%- include('includes/footer') %>
+
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

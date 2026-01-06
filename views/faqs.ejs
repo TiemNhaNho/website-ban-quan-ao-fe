@@ -47,97 +47,137 @@
 
       <ul class="cat-list">
         <li class="cat-list-item">
-          <a href="shop.html" title="Men Jackets">Men Jackets</a>
+          <a href="/shop" title="Men Jackets">Men Jackets</a>
         </li>
         <li class="cat-list-item">
-          <a href="shop.html" title="Fashion">Fashion</a>
+          <a href="/shop" title="Fashion">Fashion</a>
         </li>
         <li class="cat-list-item">
-          <a href="shop.html" title="Casual Wears">Casual Wears</a>
+          <a href="/shop" title="Casual Wears">Casual Wears</a>
         </li>
         <li class="cat-list-item">
-          <a href="shop.html" title="Women">Women</a>
+          <a href="/shop" title="Women">Women</a>
         </li>
         <li class="cat-list-item">
-          <a href="shop.html" title="Trending">Trending</a>
+          <a href="/shop" title="Trending">Trending</a>
         </li>
         <li class="cat-list-item">
-          <a href="shop.html" title="Hoodie">Hoodie</a>
+          <a href="/shop" title="Hoodie">Hoodie</a>
         </li>
         <li class="cat-list-item">
-          <a href="shop.html" title="Kids">Kids</a>
+          <a href="/shop" title="Kids">Kids</a>
         </li>
       </ul>
     </div>
-  </div>
+  </div>  
 
-  <div data-include="header"></div>
+
+ 
+      <script src="js/jquery-1.11.0.min.js"></script>
+      <script src="js/plugins.js"></script>
+      <script src="js/script.js"></script>
+
+          <%- include('includes/header') %>
+                        
+
+                  
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
 
   <section class="site-banner jarallax padding-large"
     style="background: url(images/hero-image.jpg) no-repeat; background-position: top;">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="page-title">Login</h1>
+          <h1 class="page-title">FAQs</h1>
           <div class="breadcrumbs">
             <span class="item">
-              <a href="index.html">Home /</a>
+              <a href="/">Home /</a>
             </span>
-            <span class="item">Login</span>
+            <span class="item">FAQs</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="login-tabs padding-large no-padding-bottom">
+  <section class="faqs padding-large">
     <div class="container">
       <div class="row">
-        <div class="tabs-listing">
-          <nav>
-            <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
-              <button class="nav-link active" id="nav-sign-in-tab" data-bs-toggle="tab" data-bs-target="#nav-sign-in"
-                type="button" role="tab" aria-controls="nav-sign-in" aria-selected="true">Sign In</button>
-              <button class="nav-link" id="nav-register-tab" data-bs-toggle="tab" data-bs-target="#nav-register"
-                type="button" role="tab" aria-controls="nav-register" aria-selected="false">Register</button>
-            </div>
-          </nav>
-          <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade active" id="nav-sign-in" role="tabpanel" aria-labelledby="nav-sign-in-tab">
-              <div class="form-group">
-                <label for="sign-in">Username or email address *</label>
-                <input type="text" minlength="2" name="username" placeholder="Your Username"
-                  class="u-full-width bg-light" required>
+        <div class="col-md-6">
+          <div class="section-header">
+            <h2 class="section-title">Frequently asked questions</h2>
+            <p>Malesuada nunc vel risus commodo viverra. Viverra accumsan in nisl nisi. Pretium nibh ipsum consequat
+              nisl vel pretium. Tortor dignissim convallis aenean et tortor at risus viverra adipiscing.</p>
+          </div>
+          <div class="accordion" id="accordionExample2">
+            <div class="accordion-item">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#accordion-collapse1" aria-expanded="true" aria-controls="accordion-collapse1">
+                <h3>What is true fashion?</h3>
+              </button>
+              <div id="accordion-collapse1" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample2">
+                <div class="accordion-body"> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. </div>
               </div>
-              <div class="form-group">
-                <label for="sign-in">Password *</label>
-                <input type="password" minlength="2" name="password" placeholder="Your Password"
-                  class="u-full-width bg-light" required>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#accordion-collapse2" aria-expanded="false" aria-controls="accordion-collapse2">
+                <h3>Will i get refund?</h3>
+              </button>
+              <div id="accordion-collapse2" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#accordionExample2">
+                <div class="accordion-body"> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#accordion-collapse3" aria-expanded="false" aria-controls="accordion-collapse3">
+                <h3>Is this website verified?</h3>
+              </button>
+              <div id="accordion-collapse3" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                data-bs-parent="#accordionExample2">
+                <div class="accordion-body"> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="contact-information">
+            <div class="section-header">
+              <h2 class="section-title">Ask us anything</h2>
+              <p>Viverra accumsan in nisl nisi. Pretium nibh ipsum consequat nisl vel pretium. Tortor dignissim
+                convallis aenean et tortor at risus viverra adipiscing.</p>
+            </div>
+            <form name="contactform" action="contact.php" method="post" class="contact-form">
+              <div class="form-item">
+                <input type="text" minlength="2" name="name" placeholder="Name" class="u-full-width bg-light" required>
+                <input type="email" name="email" placeholder="E-mail" class="u-full-width bg-light" required>
+                <textarea class="u-full-width bg-light" name="message" placeholder="Message" style="height: 180px;"
+                  required></textarea>
               </div>
               <label>
                 <input type="checkbox" required>
-                <span class="label-body">Remember Me</span>
-                <span class="label-body"><a href="#">Forgot Password</a></span>
+                <span class="label-body">I agree all the <a href="#">terms and conditions</a>
+                </span>
               </label>
-              <button type="submit" name="submit" class="btn btn-dark btn-full btn-medium">Login</button>
-            </div>
-            <div class="tab-pane fade" id="nav-register" role="tabpanel" aria-labelledby="nav-register-tab">
-              <div class="form-group">
-                <label for="register">Your email address *</label>
-                <input type="text" minlength="2" name="username" placeholder="Your Email Address"
-                  class="u-full-width bg-light" required>
-              </div>
-              <div class="form-group">
-                <label for="sign-in">Password *</label>
-                <input type="password" minlength="2" name="password" placeholder="Your Password"
-                  class="u-full-width bg-light" required>
-              </div>
-              <label>
-                <input type="checkbox" required>
-                <span class="label-body">I agree to the <a href="#">Privacy Policy</a></span>
-              </label>
-              <button type="submit" name="submit" class="btn btn-dark btn-full btn-medium">Register</button>
-            </div>
+              <button type="submit" name="submit" class="btn btn-dark btn-full btn-medium">Submit</button>
+            </form>
           </div>
         </div>
       </div>
@@ -233,9 +273,8 @@
     <hr>
   </section>
 
-  <div data-include="footer"></div>
-
-  <script src="js/include.js"></script>
+  <%- include('includes/footer') %>
+     
   <script src="js/jquery-1.11.0.min.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
