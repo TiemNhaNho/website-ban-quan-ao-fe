@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lí Mã Giảm Giá - Admin</title>
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../icomoon/icomoon.css">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body class="admin-layout">
+  <div class="admin-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="logo">Tiệm Nhà Nhỏ</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="icon icon-home"></i><span>Dashboard</span></a></li>
+          <li class="nav-item"><a href="orders.html" class="nav-link"><i class="icon icon-shopping-bag"></i><span>Quản lí Đơn Hàng</span></a></li>
+          <li class="nav-item"><a href="products.html" class="nav-link"><i class="icon icon-package"></i><span>Quản lí Sản Phẩm</span></a></li>
+          <li class="nav-item"><a href="customers.html" class="nav-link"><i class="icon icon-users"></i><span>Quản lí Khách Hàng</span></a></li>
+          <li class="nav-item"><a href="suppliers.html" class="nav-link"><i class="icon icon-truck"></i><span>Quản lí Nhà Cung Cấp</span></a></li>
+          <li class="nav-item"><a href="categories.html" class="nav-link"><i class="icon icon-list"></i><span>Quản lí Danh Mục</span></a></li>
+          <li class="nav-item active"><a href="coupons.html" class="nav-link"><i class="icon icon-ticket"></i><span>Quản lí Mã Giảm Giá</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="admin-header">
+        <div class="header-left">
+          <h1>Quản lí Mã Giảm Giá</h1>
+        </div>
+      </header>
+
+      <section class="page-content">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-header">
+              <h3>Danh Sách Mã Giảm Giá</h3>
+              <div style="display: flex; gap: 1rem; align-items: center;">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm mã giảm giá..." onkeyup="searchTable()" style="padding: 0.5rem 1rem; border: 1px solid #ddd; border-radius: 4px; width: 250px;">
+                <button class="btn btn-primary" onclick="openAddModal()">+ Thêm Mã Giảm Giá</button>
+              </div>
+            </div>
+
+            <table class="table" id="couponsTable">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Mã Coupon</th>
+                  <th>Loại Giảm Giá</th>
+                  <th>Giá Trị</th>
+                  <th>Ngày Bắt Đầu</th>
+                  <th>Ngày Kết Thúc</th>
+                  <th>Hành Động</th>
+                </tr>
+              </thead>
+              <tbody id="couponsBody">
+                <tr class="coupon-row" onclick="openViewModal(1)">
+                  <td>1</td>
+                  <td>SALE2025</td>
+                  <td>Phần Trăm</td>
+                  <td>20%</td>
+                  <td>01/01/2025</td>
+                  <td>31/12/2025</td>
+                  <td onclick="event.stopPropagation()">
+                    <button class="btn-icon" onclick="openEditModal(1)" title="Sửa"><img src="../images/sua.png" alt="Sửa" class="icon-img"></button>
+                    <button class="btn-icon" onclick="deleteCoupon(1)" title="Xóa"><img src="../images/huy.png" alt="Xóa" class="icon-img"></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="couponModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Thêm/Sửa Mã Giảm Giá</h2>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <form id="couponForm">
+        <div class="form-group">
+          <label>Mã Coupon</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Loại Giảm Giá</label>
+          <select required>
+            <option>Phần Trăm</option>
+            <option>Tiền Mặt</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Giá Trị</label>
+          <input type="number" required>
+        </div>
+        <div class="form-group">
+          <label>Ngày Bắt Đầu</label>
+          <input type="date" required>
+        </div>
+        <div class="form-group">
+          <label>Ngày Kết Thúc</label>
+          <input type="date" required>
+        </div>
+        <div class="form-group">
+          <label>Số Lần Dùng Tối Đa</label>
+          <input type="number">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal()">Hủy</button>
+          <button type="submit" class="btn btn-primary">Lưu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function searchTable() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const tbody = document.getElementById('couponsBody');
+      const rows = tbody.getElementsByTagName('tr');
+      
+      for (let row of rows) {
+        const code = row.cells[1]?.textContent || '';
+        const type = row.cells[2]?.textContent || '';
+        
+        if (code.toLowerCase().includes(input) || type.toLowerCase().includes(input)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      }
+    }
+
+    const couponsData = {
+      1: { id: 1, code: 'SALE2025', discountType: 'Phần Trăm', discountValue: '20%', startDate: '01/01/2025', endDate: '31/12/2025', maxUses: 100 },
+      2: { id: 2, code: 'NEWCUST15', discountType: 'Tiền', discountValue: '150000đ', startDate: '15/01/2025', endDate: '28/02/2025', maxUses: 50 }
+    };
+
+    function openAddModal() {
+      document.getElementById('couponForm').reset();
+      document.getElementById('couponForm').dataset.couponId = '';
+      openModal('couponModal');
+    }
+
+    function openEditModal(id) {
+      const coupon = couponsData[id];
+      const inputs = document.querySelectorAll('#couponForm input');
+      inputs[0].value = coupon.code;
+      inputs[1].value = coupon.discountValue;
+      inputs[2].value = coupon.startDate;
+      inputs[3].value = coupon.endDate;
+      inputs[4].value = coupon.maxUses;
+      document.getElementById('couponForm').dataset.couponId = id;
+      openModal('couponModal');
+    }
+
+    function openViewModal(id) {
+      const coupon = couponsData[id];
+      const modal = document.createElement('div');
+      modal.className = 'modal';
+      modal.id = 'viewModal';
+      modal.style.display = 'block';
+      modal.innerHTML = `
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Chi Tiết Mã Giảm Giá</h2>
+            <button class="close-btn" onclick="this.closest('.modal').remove()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div><strong>Mã Coupon:</strong> <p>${coupon.code}</p></div>
+              <div><strong>Loại Giảm Giá:</strong> <p>${coupon.discountType}</p></div>
+              <div><strong>Giá Trị:</strong> <p>${coupon.discountValue}</p></div>
+              <div><strong>Số Lần Sử Dụng Tối Đa:</strong> <p>${coupon.maxUses}</p></div>
+              <div><strong>Ngày Bắt Đầu:</strong> <p>${coupon.startDate}</p></div>
+              <div><strong>Ngày Kết Thúc:</strong> <p>${coupon.endDate}</p></div>
+            </div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      addSwipeListener('viewModal');
+    }
+
+    function deleteCoupon(id) {
+      if(!confirmDelete('mã giảm giá')) return;
+      delete couponsData[id];
+      const tbody = document.getElementById('couponsBody');
+      tbody.querySelectorAll('tr').forEach(row => {
+        if(parseInt(row.cells[0].textContent) === id) row.remove();
+      });
+      showToast('Đã xóa mã giảm giá');
+    }
+
+    function addSwipeListener(modalId) {
+      const modal = document.getElementById(modalId);
+      let touchStartY = 0;
+      modal.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; });
+      modal.addEventListener('touchend', e => {
+        if(touchStartY - e.changedTouches[0].clientY > 100) {
+          modal.classList.add('closing');
+          setTimeout(() => modal.remove(), 300);
+        }
+      });
+    }
+
+    document.getElementById('couponForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const inputs = this.querySelectorAll('input');
+      const couponId = this.dataset.couponId;
+      const id = couponId ? parseInt(couponId) : Math.max(...Object.keys(couponsData).map(Number)) + 1;
+      
+      couponsData[id] = {
+        id: id,
+        code: inputs[0].value,
+        discountType: couponsData[id]?.discountType || 'Phần Trăm',
+        discountValue: inputs[1].value,
+        startDate: inputs[2].value,
+        endDate: inputs[3].value,
+        maxUses: inputs[4].value
+      };
+
+      const tbody = document.getElementById('couponsBody');
+      const existingRow = tbody.querySelector(`tr[data-id="${id}"]`);
+      
+      if(existingRow) {
+        existingRow.cells[1].textContent = inputs[0].value;
+        existingRow.cells[3].textContent = inputs[1].value;
+        existingRow.cells[4].textContent = inputs[2].value;
+        existingRow.cells[5].textContent = inputs[3].value;
+      } else {
+        const row = tbody.insertRow();
+        row.className = 'coupon-row';
+        row.dataset.id = id;
+        row.onclick = () => openViewModal(id);
+        row.innerHTML = `
+          <td>${id}</td>
+          <td>${inputs[0].value}</td>
+          <td>${couponsData[id].discountType}</td>
+          <td>${inputs[1].value}</td>
+          <td>${inputs[2].value}</td>
+          <td>${inputs[3].value}</td>
+          <td onclick="event.stopPropagation()">
+            <button class="btn-icon" onclick="openEditModal(${id})"><img src="../images/sua.png" alt="Sửa" class="icon-img"></button>
+            <button class="btn-icon" onclick="deleteCoupon(${id})"><img src="../images/huy.png" alt="Xóa" class="icon-img"></button>
+          </td>
+        `;
+      }
+
+      showToast('Lưu mã giảm giá thành công');
+      closeModal('couponModal');
+    });
+  </script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

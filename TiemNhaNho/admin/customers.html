@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lí Khách Hàng - Admin</title>
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../icomoon/icomoon.css">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body class="admin-layout">
+  <div class="admin-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="logo">Tiệm Nhà Nhỏ</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="icon icon-home"></i><span>Dashboard</span></a></li>
+          <li class="nav-item"><a href="orders.html" class="nav-link"><i class="icon icon-shopping-bag"></i><span>Quản lí Đơn Hàng</span></a></li>
+          <li class="nav-item"><a href="products.html" class="nav-link"><i class="icon icon-package"></i><span>Quản lí Sản Phẩm</span></a></li>
+          <li class="nav-item active"><a href="customers.html" class="nav-link"><i class="icon icon-users"></i><span>Quản lí Khách Hàng</span></a></li>
+          <li class="nav-item"><a href="suppliers.html" class="nav-link"><i class="icon icon-truck"></i><span>Quản lí Nhà Cung Cấp</span></a></li>
+          <li class="nav-item"><a href="categories.html" class="nav-link"><i class="icon icon-list"></i><span>Quản lí Danh Mục</span></a></li>
+          <li class="nav-item"><a href="coupons.html" class="nav-link"><i class="icon icon-ticket"></i><span>Quản lí Mã Giảm Giá</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="admin-header">
+        <div class="header-left">
+          <h1>Quản lí Khách Hàng</h1>
+        </div>
+      </header>
+
+      <section class="page-content">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-header">
+              <h3>Danh Sách Khách Hàng</h3>
+              <div style="display: flex; gap: 1rem; align-items: center;">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm khách hàng..." onkeyup="searchTable()" style="padding: 0.5rem 1rem; border: 1px solid #ddd; border-radius: 4px; width: 250px;">
+                <button class="btn btn-primary" onclick="openAddModal()">+ Thêm Khách Hàng</button>
+              </div>
+            </div>
+
+  <div class="table-responsive">
+              <table class="table" id="customersTable">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Tên</th>
+                    <th>Email</th>
+                    <th>SĐT</th>
+                    <th>Tổng Đơn</th>
+                    <th>Hành Động</th>
+                  </tr>
+                </thead>
+                <tbody id="customersBody">
+                  <tr class="customer-row" onclick="openViewModal(1)">
+                    <td>1</td>
+                    <td>Nguyễn Văn A</td>
+                    <td>nguyenvana@email.com</td>
+                    <td>0123456789</td>
+                    <td>5</td>
+                    <td onclick="event.stopPropagation()">
+                      <button class="btn-icon" onclick="openEditModal(1)" title="Sửa"><img src="../images/sua.png" alt="Sửa" class="icon-img"></button>
+                      <button class="btn-icon" onclick="deleteCustomer(1)" title="Xóa"><img src="../images/huy.png" alt="Xóa" class="icon-img"></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="customerModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Thêm/Sửa Khách Hàng</h2>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <form id="customerForm">
+        <div class="form-group">
+          <label>Tên Khách Hàng</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" required>
+        </div>
+        <div class="form-group">
+          <label>SĐT</label>
+          <input type="tel" required>
+        </div>
+        <div class="form-group">
+          <label>Địa Chỉ</label>
+          <textarea rows="3"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal()">Hủy</button>
+          <button type="submit" class="btn btn-primary">Lưu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function searchTable() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const tbody = document.getElementById('customersBody');
+      const rows = tbody.getElementsByTagName('tr');
+      
+      for (let row of rows) {
+        const name = row.cells[1]?.textContent || '';
+        const email = row.cells[2]?.textContent || '';
+        const phone = row.cells[3]?.textContent || '';
+        
+        if (name.toLowerCase().includes(input) || 
+            email.toLowerCase().includes(input) || 
+            phone.toLowerCase().includes(input)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      }
+    }
+
+    const customersData = {
+      1: { id: 1, name: 'Nguyễn Văn A', email: 'nguyenvana@email.com', phone: '0123456789', address: '123 Đường Lê Lợi, HCM', joinDate: '2024-01-15', orderCount: 5 },
+      2: { id: 2, name: 'Trần Thị B', email: 'tranthib@email.com', phone: '0987654321', address: '456 Đường Trần Hưng Đạo, HCM', joinDate: '2024-02-20', orderCount: 3 }
+    };
+
+    function openAddModal() { 
+      document.getElementById('customerForm').reset();
+      document.getElementById('customerForm').dataset.customerId = '';
+      openModal('customerModal');
+    }
+
+    function openEditModal(id) {
+      const customer = customersData[id];
+      const inputs = document.querySelectorAll('#customerForm input, #customerForm textarea');
+      inputs[0].value = customer.name;
+      inputs[1].value = customer.email;
+      inputs[2].value = customer.phone;
+      inputs[3].value = customer.address;
+      document.getElementById('customerForm').dataset.customerId = id;
+      openModal('customerModal');
+    }
+
+    function openViewModal(id) {
+      const customer = customersData[id];
+      const modal = document.createElement('div');
+      modal.className = 'modal';
+      modal.id = 'viewModal';
+      modal.style.display = 'block';
+      modal.innerHTML = `
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Chi Tiết Khách Hàng</h2>
+            <button class="close-btn" onclick="this.closest('.modal').remove()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div><strong>Tên:</strong> <p>${customer.name}</p></div>
+              <div><strong>Email:</strong> <p>${customer.email}</p></div>
+              <div><strong>SĐT:</strong> <p>${customer.phone}</p></div>
+              <div><strong>Ngày Tham Gia:</strong> <p>${customer.joinDate}</p></div>
+              <div colspan="2"><strong>Địa Chỉ:</strong> <p>${customer.address}</p></div>
+              <div><strong>Tổng Đơn Hàng:</strong> <p>${customer.orderCount}</p></div>
+            </div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      addSwipeListener('viewModal');
+    }
+
+    function deleteCustomer(id) {
+      if(!confirmDelete('khách hàng')) return;
+      delete customersData[id];
+      const tbody = document.getElementById('customersBody');
+      tbody.querySelectorAll('tr').forEach(row => {
+        if(parseInt(row.cells[0].textContent) === id) row.remove();
+      });
+      showToast('Đã xóa khách hàng');
+    }
+
+    function addSwipeListener(modalId) {
+      const modal = document.getElementById(modalId);
+      let touchStartY = 0;
+      modal.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; });
+      modal.addEventListener('touchend', e => {
+        if(touchStartY - e.changedTouches[0].clientY > 100) {
+          modal.classList.add('closing');
+          setTimeout(() => modal.remove(), 300);
+        }
+      });
+    }
+
+    document.getElementById('customerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const inputs = this.querySelectorAll('input, textarea');
+      const customerId = this.dataset.customerId;
+      const id = customerId ? parseInt(customerId) : Math.max(...Object.keys(customersData).map(Number)) + 1;
+      
+      customersData[id] = {
+        id: id,
+        name: inputs[0].value,
+        email: inputs[1].value,
+        phone: inputs[2].value,
+        address: inputs[3].value,
+        joinDate: customersData[id]?.joinDate || new Date().toISOString().split('T')[0],
+        orderCount: customersData[id]?.orderCount || 0
+      };
+
+      const tbody = document.getElementById('customersBody');
+      const existingRow = tbody.querySelector(`tr[data-id="${id}"]`);
+      
+      if(existingRow) {
+        existingRow.cells[1].textContent = inputs[0].value;
+        existingRow.cells[2].textContent = inputs[1].value;
+        existingRow.cells[3].textContent = inputs[2].value;
+      } else {
+        const row = tbody.insertRow();
+        row.className = 'customer-row';
+        row.dataset.id = id;
+        row.onclick = () => openViewModal(id);
+        row.innerHTML = `
+          <td>${id}</td>
+          <td>${inputs[0].value}</td>
+          <td>${inputs[1].value}</td>
+          <td>${inputs[2].value}</td>
+          <td>${customersData[id].orderCount}</td>
+          <td onclick="event.stopPropagation()">
+            <button class="btn-icon" onclick="openEditModal(${id})"><img src="../images/sua.png" alt="Sửa" class="icon-img"></button>
+            <button class="btn-icon" onclick="deleteCustomer(${id})"><img src="../images/huy.png" alt="Xóa" class="icon-img"></button>
+          </td>
+        `;
+      }
+
+      showToast('Lưu khách hàng thành công');
+      closeModal('customerModal');
+    });
+  </script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
