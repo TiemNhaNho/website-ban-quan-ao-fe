@@ -103,40 +103,48 @@
             </div>
           </nav>
           <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade active" id="nav-sign-in" role="tabpanel" aria-labelledby="nav-sign-in-tab">
-              <div class="form-group">
-                <label for="sign-in">Username or email address *</label>
-                <input type="text" minlength="2" name="username" placeholder="Your Username"
-                  class="u-full-width bg-light" required>
-              </div>
-              <div class="form-group">
-                <label for="sign-in">Password *</label>
-                <input type="password" minlength="2" name="password" placeholder="Your Password"
-                  class="u-full-width bg-light" required>
-              </div>
-              <label>
-                <input type="checkbox" required>
-                <span class="label-body">Remember Me</span>
-                <span class="label-body"><a href="#">Forgot Password</a></span>
-              </label>
-              <button type="submit" name="submit" class="btn btn-dark btn-full btn-medium">Login</button>
+            <!-- Login Form -->
+            <div class="tab-pane fade active show" id="nav-sign-in" role="tabpanel" aria-labelledby="nav-sign-in-tab">
+              <form id="loginForm">
+                <div class="form-group">
+                  <label for="login-email">Email address *</label>
+                  <input type="email" id="login-email" name="username" placeholder="Your Email Address"
+                    class="u-full-width bg-light" required>
+                </div>
+                <div class="form-group">
+                  <label for="login-password">Password *</label>
+                  <input type="password" id="login-password" name="password" placeholder="Your Password"
+                    class="u-full-width bg-light" minlength="8" required>
+                </div>
+                <label>
+                  <input type="checkbox" id="remember-me">
+                  <span class="label-body">Remember Me</span>
+                  <span class="label-body"><a href="#" style="margin-left: 20px;">Forgot Password?</a></span>
+                </label>
+                <button type="submit" class="btn btn-dark btn-full btn-medium">Login</button>
+              </form>
             </div>
+            
+            <!-- Register Form -->
             <div class="tab-pane fade" id="nav-register" role="tabpanel" aria-labelledby="nav-register-tab">
-              <div class="form-group">
-                <label for="register">Your email address *</label>
-                <input type="text" minlength="2" name="username" placeholder="Your Email Address"
-                  class="u-full-width bg-light" required>
-              </div>
-              <div class="form-group">
-                <label for="sign-in">Password *</label>
-                <input type="password" minlength="2" name="password" placeholder="Your Password"
-                  class="u-full-width bg-light" required>
-              </div>
-              <label>
-                <input type="checkbox" required>
-                <span class="label-body">I agree to the <a href="#">Privacy Policy</a></span>
-              </label>
-              <button type="submit" name="submit" class="btn btn-dark btn-full btn-medium">Register</button>
+              <form id="registerForm">
+                <div class="form-group">
+                  <label for="register-email">Email address *</label>
+                  <input type="email" id="register-email" name="username" placeholder="Your Email Address"
+                    class="u-full-width bg-light" required>
+                </div>
+                <div class="form-group">
+                  <label for="register-password">Password *</label>
+                  <input type="password" id="register-password" name="password" placeholder="Your Password (8-128 characters)"
+                    class="u-full-width bg-light" minlength="8" maxlength="128" required>
+                  <small style="color: #666; font-size: 12px;">Password must be 8-128 characters long</small>
+                </div>
+                <label>
+                  <input type="checkbox" id="agree-policy" required>
+                  <span class="label-body">I agree to the <a href="#">Privacy Policy</a></span>
+                </label>
+                <button type="submit" class="btn btn-dark btn-full btn-medium">Register</button>
+              </form>
             </div>
           </div>
         </div>
@@ -239,6 +247,7 @@
   <script src="js/jquery-1.11.0.min.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/auth.js"></script>
 </body>
 
 </html>
