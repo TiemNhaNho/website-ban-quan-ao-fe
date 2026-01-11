@@ -1,230 +1,233 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - Tiệm Nhà Nhỏ Admin</title>
-  <link rel="stylesheet" href="../css/normalize.css">
-  <link rel="stylesheet" href="../icomoon/icomoon.css">
-  <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="css/admin-style.css">
-</head>
-<body class="admin-layout">
-  <div class="admin-container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <h2 class="logo">Tiệm Nhà Nhỏ</h2>
-        <p class="subtitle">Xin chào Admin !</p>
-      </div>
-      <nav class="sidebar-nav">
-        <ul class="nav-list">
-          <li class="nav-item active">
-            <a href="dashboard.html" class="nav-link">
-              <i class="icon icon-home"></i>
-              <span>Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="orders.html" class="nav-link">
-              <i class="icon icon-shopping-bag"></i>
-              <span>Quản lí Đơn Hàng</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="products.html" class="nav-link">
-              <i class="icon icon-package"></i>
-              <span>Quản lí Sản Phẩm</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="customers.html" class="nav-link">
-              <i class="icon icon-users"></i>
-              <span>Quản lí Khách Hàng</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="suppliers.html" class="nav-link">
-              <i class="icon icon-truck"></i>
-              <span>Quản lí Nhà Cung Cấp</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="categories.html" class="nav-link">
-              <i class="icon icon-list"></i>
-              <span>Quản lí Danh Mục</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="coupons.html" class="nav-link">
-              <i class="icon icon-ticket"></i>
-              <span>Quản lí Mã Giảm Giá</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="main-content">
-      <!-- Header -->
-      <header class="admin-header">
-        <div class="header-left">
-          <button class="menu-toggle">
-            <i class="icon icon-menu"></i>
-          </button>
-          <h1>Dashboard</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Tiệm Nhà Nhỏ Admin</title>
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <link rel="stylesheet" href="../icomoon/icomoon.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="css/admin-style.css" />
+  </head>
+  <body class="admin-layout">
+    <div class="admin-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2 class="logo">Tiệm Nhà Nhỏ</h2>
+          <p class="subtitle">Xin chào Admin !</p>
         </div>
-        <div class="header-right">
-          <div class="search-box">
-            <input type="text" placeholder="Tìm kiếm...">
-            <i class="icon icon-search"></i>
-          </div>
-          <div class="user-menu">
-            <div class="user-avatar">
-              <img src="../images/avatar.jpg" alt="Admin">
-            </div>
-            <div class="dropdown">
-              <a href="#" class="user-name">Admin</a>
-              <button class="logout-btn">Đăng xuất</button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <!-- Dashboard Content -->
-      <section class="dashboard-content">
-        <div class="container-fluid">
-          <!-- Stats Cards -->
-          <div class="stats-grid">
-            <div class="stat-card">
-              <div class="stat-icon orders">
+        <nav class="sidebar-nav">
+          <ul class="nav-list">
+            <li class="nav-item active">
+              <a href="dashboard.html" class="nav-link">
+                <i class="icon icon-home"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="orders.html" class="nav-link">
                 <i class="icon icon-shopping-bag"></i>
-              </div>
-              <div class="stat-info">
-                <h3>1,245</h3>
-                <p>Tổng Đơn Hàng</p>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon revenue">
-                <i class="icon icon-dollar"></i>
-              </div>
-              <div class="stat-info">
-                <h3>₫ 45,320,000</h3>
-                <p>Doanh Thu</p>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon products">
+                <span>Quản lí Đơn Hàng</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="products.html" class="nav-link">
                 <i class="icon icon-package"></i>
-              </div>
-              <div class="stat-info">
-                <h3>342</h3>
-                <p>Sản Phẩm</p>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon customers">
+                <span>Quản lí Sản Phẩm</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="customers.html" class="nav-link">
                 <i class="icon icon-users"></i>
+                <span>Quản lí Khách Hàng</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="suppliers.html" class="nav-link">
+                <i class="icon icon-truck"></i>
+                <span>Quản lí Nhà Cung Cấp</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="categories.html" class="nav-link">
+                <i class="icon icon-list"></i>
+                <span>Quản lí Danh Mục</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="coupons.html" class="nav-link">
+                <i class="icon icon-ticket"></i>
+                <span>Quản lí Mã Giảm Giá</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Header -->
+        <header class="admin-header">
+          <div class="header-left">
+            <button class="menu-toggle">
+              <i class="icon icon-menu"></i>
+            </button>
+            <h1>Dashboard</h1>
+          </div>
+          <div class="header-right">
+            <div class="search-box">
+              <input type="text" placeholder="Tìm kiếm..." />
+              <i class="icon icon-search"></i>
+            </div>
+            <div class="user-menu">
+              <div class="user-avatar">
+                <img
+                  src="https://img.freepik.com/premium-vector/man-face-vector_1072857-7641.jpg?w=54"
+                  alt="Admin"
+                />
+                <a href="#" class="user-name">Admin</a>
               </div>
-              <div class="stat-info">
-                <h3>856</h3>
-                <p>Khách Hàng</p>
+              <div class="dropdown">
+                <button class="logout-btn">Đăng xuất</button>
               </div>
             </div>
           </div>
+        </header>
 
-          <!-- Charts Row -->
-          <div class="charts-row">
-            <div class="chart-card full-width">
-              <h3>Doanh Thu Theo Tháng</h3>
-              <div class="chart-placeholder">
-                <p>Biểu đồ doanh thu (cần integrate với Chart.js)</p>
+        <!-- Dashboard Content -->
+        <section class="dashboard-content">
+          <div class="container-fluid">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-icon orders">
+                  <i class="icon icon-shopping-bag"></i>
+                </div>
+                <div class="stat-info">
+                  <h3>1,245</h3>
+                  <p>Tổng Đơn Hàng</p>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon revenue">
+                  <i class="icon icon-dollar"></i>
+                </div>
+                <div class="stat-info">
+                  <h3>₫ 45,320,000</h3>
+                  <p>Doanh Thu</p>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon products">
+                  <i class="icon icon-package"></i>
+                </div>
+                <div class="stat-info">
+                  <h3>342</h3>
+                  <p>Sản Phẩm</p>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon customers">
+                  <i class="icon icon-users"></i>
+                </div>
+                <div class="stat-info">
+                  <h3>856</h3>
+                  <p>Khách Hàng</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-row">
+              <div class="chart-card full-width">
+                <h3>Doanh Thu Theo Tháng</h3>
+                <div class="chart-placeholder">
+                  <p>Biểu đồ doanh thu (cần integrate với Chart.js)</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Orders & Top Products -->
+            <div class="dashboard-grid">
+              <!-- Recent Orders -->
+              <div class="card">
+                <div class="card-header">
+                  <h3>Đơn Hàng Gần Đây</h3>
+                  <a href="orders.html" class="view-all">Xem tất cả</a>
+                </div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Mã Đơn</th>
+                      <th>Khách Hàng</th>
+                      <th>Tổng Tiền</th>
+                      <th>Trạng Thái</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>#ORD001</td>
+                      <td>Nguyễn Văn A</td>
+                      <td>₫ 1,250,000</td>
+                      <td><span class="badge pending">Chưa xử lí</span></td>
+                    </tr>
+                    <tr>
+                      <td>#ORD002</td>
+                      <td>Trần Thị B</td>
+                      <td>₫ 850,000</td>
+                      <td><span class="badge confirmed">Đã xác nhận</span></td>
+                    </tr>
+                    <tr>
+                      <td>#ORD003</td>
+                      <td>Lê Văn C</td>
+                      <td>₫ 2,100,000</td>
+                      <td><span class="badge shipped">Đang giao</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Top Products -->
+              <div class="card">
+                <div class="card-header">
+                  <h3>Sản Phẩm Bán Chạy</h3>
+                  <a href="products.html" class="view-all">Xem tất cả</a>
+                </div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Sản Phẩm</th>
+                      <th>Bán</th>
+                      <th>Doanh Thu</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Áo Sơ Mi Nam Cotton</td>
+                      <td>156</td>
+                      <td>₫ 39,000,000</td>
+                    </tr>
+                    <tr>
+                      <td>Quần Jeans Slim Fit</td>
+                      <td>89</td>
+                      <td>₫ 66,750,000</td>
+                    </tr>
+                    <tr>
+                      <td>Áo Thun Nữ Basic</td>
+                      <td>234</td>
+                      <td>₫ 35,100,000</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
+        </section>
+      </main>
+    </div>
 
-          <!-- Recent Orders & Top Products -->
-          <div class="dashboard-grid">
-            <!-- Recent Orders -->
-            <div class="card">
-              <div class="card-header">
-                <h3>Đơn Hàng Gần Đây</h3>
-                <a href="orders.html" class="view-all">Xem tất cả</a>
-              </div>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Mã Đơn</th>
-                    <th>Khách Hàng</th>
-                    <th>Tổng Tiền</th>
-                    <th>Trạng Thái</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>#ORD001</td>
-                    <td>Nguyễn Văn A</td>
-                    <td>₫ 1,250,000</td>
-                    <td><span class="badge pending">Chưa xử lí</span></td>
-                  </tr>
-                  <tr>
-                    <td>#ORD002</td>
-                    <td>Trần Thị B</td>
-                    <td>₫ 850,000</td>
-                    <td><span class="badge confirmed">Đã xác nhận</span></td>
-                  </tr>
-                  <tr>
-                    <td>#ORD003</td>
-                    <td>Lê Văn C</td>
-                    <td>₫ 2,100,000</td>
-                    <td><span class="badge shipped">Đang giao</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <!-- Top Products -->
-            <div class="card">
-              <div class="card-header">
-                <h3>Sản Phẩm Bán Chạy</h3>
-                <a href="products.html" class="view-all">Xem tất cả</a>
-              </div>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Sản Phẩm</th>
-                    <th>Bán</th>
-                    <th>Doanh Thu</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Áo Sơ Mi Nam Cotton</td>
-                    <td>156</td>
-                    <td>₫ 39,000,000</td>
-                  </tr>
-                  <tr>
-                    <td>Quần Jeans Slim Fit</td>
-                    <td>89</td>
-                    <td>₫ 66,750,000</td>
-                  </tr>
-                  <tr>
-                    <td>Áo Thun Nữ Basic</td>
-                    <td>234</td>
-                    <td>₫ 35,100,000</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <script src="../js/jquery-1.11.0.min.js"></script>
-  <script src="js/admin.js"></script>
-</body>
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
 </html>
