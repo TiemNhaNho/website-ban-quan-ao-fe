@@ -1,8 +1,8 @@
-const submitButton = document.getElementsByName("submit")[0];
+const submitButton = document.getElementsByName("login-submit")[0];
 submitButton.addEventListener("click", function (event) {
   event.preventDefault();
-  const email = document.getElementsByName("email")[0].value;
-  const password = document.getElementsByName("password")[0].value;
+  const email = document.getElementById("login-email").value;
+  const password = document.getElementById("login-password").value;
   const loginUrl = "https://tiem-nha-nho-api.onrender.com/login";
 
   if (email == "admin@gmail.com") {
