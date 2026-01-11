@@ -242,5 +242,12 @@ function getAdminData() {
   });
 }
 
+document
+  .getElementsByClassName("logout-btn")[0]
+  .addEventListener("click", () => {
+    localStorage.removeItem("adminToken");
+    window.location.href = "../login.html";
+  });
+
 // Initialize on DOM Ready
 document.addEventListener("DOMContentLoaded", initAdminUI);

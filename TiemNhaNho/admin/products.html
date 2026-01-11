@@ -1,270 +1,420 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quản lí Sản Phẩm - Admin</title>
-  <link rel="stylesheet" href="../css/normalize.css">
-  <link rel="stylesheet" href="../icomoon/icomoon.css">
-  <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="css/admin-style.css">
-</head>
-<body class="admin-layout">
-  <div class="admin-container">
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <h2 class="logo">Tiệm Nhà Nhỏ</h2>
-      </div>
-      <nav class="sidebar-nav">
-        <ul class="nav-list">
-          <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="icon icon-home"></i><span>Dashboard</span></a></li>
-          <li class="nav-item"><a href="orders.html" class="nav-link"><i class="icon icon-shopping-bag"></i><span>Quản lí Đơn Hàng</span></a></li>
-          <li class="nav-item active"><a href="products.html" class="nav-link"><i class="icon icon-package"></i><span>Quản lí Sản Phẩm</span></a></li>
-          <li class="nav-item"><a href="customers.html" class="nav-link"><i class="icon icon-users"></i><span>Quản lí Khách Hàng</span></a></li>
-          <li class="nav-item"><a href="suppliers.html" class="nav-link"><i class="icon icon-truck"></i><span>Quản lí Nhà Cung Cấp</span></a></li>
-          <li class="nav-item"><a href="categories.html" class="nav-link"><i class="icon icon-list"></i><span>Quản lí Danh Mục</span></a></li>
-          <li class="nav-item"><a href="coupons.html" class="nav-link"><i class="icon icon-ticket"></i><span>Quản lí Mã Giảm Giá</span></a></li>
-        </ul>
-      </nav>
-    </aside>
-
-    <main class="main-content">
-      <header class="admin-header">
-        <div class="header-left">
-          <h1>Quản lí Sản Phẩm</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lí Sản Phẩm - Admin</title>
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <link rel="stylesheet" href="../icomoon/icomoon.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="css/admin-style.css" />
+  </head>
+  <body class="admin-layout">
+    <div class="admin-container">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2 class="logo">Tiệm Nhà Nhỏ</h2>
         </div>
-      </header>
+        <nav class="sidebar-nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="dashboard.html" class="nav-link"
+                ><i class="icon icon-home"></i><span>Dashboard</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="orders.html" class="nav-link"
+                ><i class="icon icon-shopping-bag"></i
+                ><span>Quản lí Đơn Hàng</span></a
+              >
+            </li>
+            <li class="nav-item active">
+              <a href="products.html" class="nav-link"
+                ><i class="icon icon-package"></i
+                ><span>Quản lí Sản Phẩm</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="customers.html" class="nav-link"
+                ><i class="icon icon-users"></i
+                ><span>Quản lí Khách Hàng</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="suppliers.html" class="nav-link"
+                ><i class="icon icon-truck"></i
+                ><span>Quản lí Nhà Cung Cấp</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="categories.html" class="nav-link"
+                ><i class="icon icon-list"></i><span>Quản lí Danh Mục</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="coupons.html" class="nav-link"
+                ><i class="icon icon-ticket"></i
+                ><span>Quản lí Mã Giảm Giá</span></a
+              >
+            </li>
+          </ul>
+        </nav>
+      </aside>
 
-      <section class="page-content">
-        <div class="container-fluid">
-          <div class="card">
-            <div class="card-header">
-              <h3>Danh Sách Sản Phẩm</h3>
-              <div style="display: flex; gap: 1rem; align-items: center;">
-                <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm..." onkeyup="searchTable()" style="padding: 0.5rem 1rem; border: 1px solid #ddd; border-radius: 4px; width: 250px;">
-                <button class="btn btn-primary" onclick="openAddModal()">+ Thêm Sản Phẩm</button>
+      <main class="main-content">
+        <header class="admin-header">
+          <div class="header-left">
+            <h1>Quản lí Sản Phẩm</h1>
+          </div>
+        </header>
+
+        <section class="page-content">
+          <div class="container-fluid">
+            <div class="card">
+              <div class="card-header">
+                <h3>Danh Sách Sản Phẩm</h3>
+                <div style="display: flex; gap: 1rem; align-items: center">
+                  <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Tìm kiếm sản phẩm..."
+                    onkeyup="searchTable()"
+                    style="
+                      padding: 0.5rem 1rem;
+                      border: 1px solid #ddd;
+                      border-radius: 4px;
+                      width: 250px;
+                    "
+                  />
+                  <button class="btn btn-primary" onclick="openAddModal()">
+                    + Thêm Sản Phẩm
+                  </button>
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table" id="productsTable">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Tên Sản Phẩm</th>
+                      <th>Danh Mục</th>
+                      <th>Giá</th>
+                      <th>Stock</th>
+                      <th>Hành Động</th>
+                    </tr>
+                  </thead>
+                  <tbody id="productsBody">
+                    <!-- Products will be loaded here -->
+                  </tbody>
+                </table>
               </div>
             </div>
+          </div>
+        </section>
+      </main>
+    </div>
 
-            <div class="table-responsive">
-              <table class="table" id="productsTable">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Tên Sản Phẩm</th>
-                    <th>Danh Mục</th>
-                    <th>Giá</th>
-                    <th>Stock</th>
-                    <th>Hành Động</th>
-                  </tr>
-                </thead>
-                <tbody id="productsBody">
-                  <tr class="product-row" onclick="openViewModal(1)">
-                    <td>1</td>
-                    <td>Áo Sơ Mi Nam Cotton</td>
-                    <td>Nam</td>
-                    <td>₫ 250,000</td>
-                    <td>150</td>
-                    <td onclick="event.stopPropagation()">
-                      <button class="btn-icon" onclick="openEditModal(1)" title="Sửa"><img src="../images/sua.png" alt="Sửa" class="icon-img"></button>
-                      <button class="btn-icon" onclick="deleteProduct(1)" title="Xóa"><img src="../images/huy.png" alt="Xóa" class="icon-img"></button>
-                    </td>
-                  </tr>
-                  <tr class="product-row" onclick="openViewModal(2)">
-                    <td>2</td>
-                    <td>Quần Jeans Nam</td>
-                    <td>Nam</td>
-                    <td>₫ 350,000</td>
-                    <td>85</td>
-                    <td onclick="event.stopPropagation()">
-                      <button class="btn-icon" onclick="openEditModal(2)" title="Sửa"><img src="../images/sua.png" alt="Sửa" class="icon-img"></button>
-                      <button class="btn-icon" onclick="deleteProduct(2)" title="Xóa"><img src="../images/huy.png" alt="Xóa" class="icon-img"></button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+    <div class="modal" id="productModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Thêm Sản Phẩm</h2>
+          <button class="close-btn" onclick="closeProductModal()">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="productForm">
+            <div class="form-group">
+              <label>Tên Sản Phẩm</label>
+              <input type="text" id="productName" required />
             </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <div class="modal" id="productModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 id="modalTitle">Thêm Sản Phẩm</h2>
-        <button class="close-btn" onclick="closeProductModal()">&times;</button>
-      </div>
-      <div class="modal-body">
-        <form id="productForm">
-          <div class="form-group">
-            <label>Tên Sản Phẩm</label>
-            <input type="text" id="productName" required>
-          </div>
-          <div class="form-group">
-            <label>Danh Mục</label>
-            <select id="category" required>
-              <option value="Nam">Nam</option>
-              <option value="Nữ">Nữ</option>
-              <option value="Trẻ Em">Trẻ Em</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Giá</label>
-            <input type="number" id="price" required>
-          </div>
-          <div class="form-group">
-            <label>Stock</label>
-            <input type="number" id="stock" required>
-          </div>
-          <div class="form-group">
-            <label>Mô Tả</label>
-            <textarea id="description" rows="3"></textarea>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" onclick="closeProductModal()">Hủy</button>
-            <button type="submit" class="btn btn-primary">Lưu</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal" id="viewModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Chi Tiết Sản Phẩm</h2>
-        <button class="close-btn" onclick="closeViewModal()">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="order-details">
-          <p><strong>ID:</strong> <span id="viewProductId"></span></p>
-          <p><strong>Tên:</strong> <span id="viewProductName"></span></p>
-          <p><strong>Danh Mục:</strong> <span id="viewCategory"></span></p>
-          <p><strong>Giá:</strong> <span id="viewPrice"></span></p>
-          <p><strong>Stock:</strong> <span id="viewStock"></span></p>
-          <p><strong>Mô Tả:</strong> <span id="viewDescription"></span></p>
+            <div class="form-group">
+              <label>Danh Mục</label>
+              <select id="category" required>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Trẻ Em">Trẻ Em</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Giá</label>
+              <input type="number" id="price" required />
+            </div>
+            <div class="form-group">
+              <label>Stock</label>
+              <input type="number" id="stock" required />
+            </div>
+            <div class="form-group">
+              <label>Mô Tả</label>
+              <textarea id="description" rows="3"></textarea>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="closeProductModal()"
+              >
+                Hủy
+              </button>
+              <button type="submit" class="btn btn-primary" onClick="">
+                Lưu
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-  </div>
 
-  <script src="../js/jquery-1.11.0.min.js"></script>
-  <script src="js/admin.js"></script>
-  <script>
-    function searchTable() {
-      const input = document.getElementById('searchInput').value.toLowerCase();
-      const tbody = document.getElementById('productsBody');
-      const rows = tbody.getElementsByTagName('tr');
-      
-      for (let row of rows) {
-        const name = row.cells[1]?.textContent || '';
-        const category = row.cells[2]?.textContent || '';
-        
-        if (name.toLowerCase().includes(input) || category.toLowerCase().includes(input)) {
-          row.style.display = '';
-        } else {
-          row.style.display = 'none';
+    <div class="modal" id="viewModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Chi Tiết Sản Phẩm</h2>
+          <button class="close-btn" onclick="closeViewModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="order-details">
+            <p><strong>ID:</strong> <span id="viewProductId"></span></p>
+            <p><strong>Tên:</strong> <span id="viewProductName"></span></p>
+            <p><strong>Danh Mục:</strong> <span id="viewCategory"></span></p>
+            <p><strong>Giá:</strong> <span id="viewPrice"></span></p>
+            <p><strong>Stock:</strong> <span id="viewStock"></span></p>
+            <p><strong>Mô Tả:</strong> <span id="viewDescription"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="js/admin.js"></script>
+    <script type="module">
+      import {
+        getAllProducts,
+        insertNewProduct,
+        updateProduct,
+        deleteProductApi,
+      } from "./js/products.js";
+      import { getCategoryById } from "./js/categories.js";
+
+      window.searchTable = function () {
+        const input = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const tbody = document.getElementById("productsBody");
+        const rows = tbody.getElementsByTagName("tr");
+
+        for (let row of rows) {
+          const name = row.cells[1]?.textContent || "";
+          const category = row.cells[2]?.textContent || "";
+
+          if (
+            name.toLowerCase().includes(input) ||
+            category.toLowerCase().includes(input)
+          ) {
+            row.style.display = "";
+          } else {
+            row.style.display = "none";
+          }
+        }
+      };
+
+      window.productsData = {};
+
+      async function fetchProducts() {
+        try {
+          const data = await getAllProducts();
+          if (data) {
+            window.productsData = {};
+            const tbody = document.getElementById("productsBody");
+            tbody.innerHTML = "";
+
+            data.forEach((product) => {
+              window.productsData[product.id] = {
+                id: product.id,
+                name: product.productName,
+                category: product.category,
+                categoryId: product.categoryId,
+                price: product.priceOut,
+                stock: product.stockValue,
+                description: product.description,
+                brand: product.brand,
+              };
+
+              const tr = document.createElement("tr");
+              tr.className = "product-row";
+              tr.onclick = () => window.openViewModal(product.id);
+
+              tr.innerHTML = `
+                  <td>${product.id}</td>
+                  <td>${product.productName}</td>
+                  <td>${product.category}</td>
+                  <td>${formatCurrency(product.priceOut)}</td>
+                  <td>${product.stockValue}</td>
+                  <td onclick="event.stopPropagation()">
+                    <button class="btn-icon" onclick="window.openEditModal(${
+                      product.id
+                    })" title="Sửa"><img src="../images/sua.png" alt="Sửa" class="icon-img"></button>
+                    <button class="btn-icon" onclick="window.deleteProduct(${
+                      product.id
+                    })" title="Xóa"><img src="../images/huy.png" alt="Xóa" class="icon-img"></button>
+                  </td>
+                `;
+              tbody.appendChild(tr);
+            });
+          }
+        } catch (error) {
+          console.error("Error loading products:", error);
         }
       }
-    }
 
-    const productsData = {
-      1: {id: 1, name: 'Áo Sơ Mi Nam Cotton', category: 'Nam', price: 250000, stock: 150, description: 'Áo sơ mi nam cao cấp từ cotton'},
-      2: {id: 2, name: 'Quần Jeans Nam', category: 'Nam', price: 350000, stock: 85, description: 'Quần jeans nam phong cách'}
-    };
+      document.addEventListener("DOMContentLoaded", fetchProducts);
 
-    function openAddModal() {
-      document.getElementById('modalTitle').textContent = 'Thêm Sản Phẩm';
-      document.getElementById('productForm').reset();
-      document.getElementById('productForm').dataset.productId = '';
-      openModal('productModal');
-    }
+      window.openAddModal = function () {
+        document.getElementById("modalTitle").textContent = "Thêm Sản Phẩm";
+        document.getElementById("productForm").reset();
+        document.getElementById("productForm").dataset.productId = "";
+        openModal("productModal");
+      };
 
-    function openEditModal(id) {
-      const data = productsData[id];
-      if (!data) return showToast('Không tìm thấy sản phẩm');
-      document.getElementById('modalTitle').textContent = 'Chỉnh Sửa Sản Phẩm';
-      document.getElementById('productName').value = data.name;
-      document.getElementById('category').value = data.category;
-      document.getElementById('price').value = data.price;
-      document.getElementById('stock').value = data.stock;
-      document.getElementById('description').value = data.description;
-      document.getElementById('productForm').dataset.productId = id;
-      openModal('productModal');
-    }
+      window.openEditModal = function (id) {
+        const data = window.productsData[id];
+        if (!data) return showToast("Không tìm thấy sản phẩm");
+        document.getElementById("modalTitle").textContent =
+          "Chỉnh Sửa Sản Phẩm";
+        document.getElementById("productName").value = data.name;
+        document.getElementById("category").value = data.categoryId;
+        document.getElementById("price").value = data.price;
+        document.getElementById("stock").value = data.stock;
+        document.getElementById("description").value = data.description;
+        document.getElementById("productForm").dataset.productId = id;
+        openModal("productModal");
+      };
 
-    function openViewModal(id) {
-      const data = productsData[id];
-      if (!data) return showToast('Không tìm thấy sản phẩm');
-      document.getElementById('viewProductId').textContent = data.id;
-      document.getElementById('viewProductName').textContent = data.name;
-      document.getElementById('viewCategory').textContent = data.category;
-      document.getElementById('viewPrice').textContent = formatCurrency(data.price);
-      document.getElementById('viewStock').textContent = data.stock;
-      document.getElementById('viewDescription').textContent = data.description;
-      openModal('viewModal');
-    }
+      window.openViewModal = async function (id) {
+        const data = window.productsData[id];
+        if (!data) return showToast("Không tìm thấy sản phẩm");
+        document.getElementById("viewProductId").textContent = data.id;
+        document.getElementById("viewProductName").textContent = data.name;
+        document.getElementById("viewPrice").textContent = formatCurrency(
+          data.price
+        );
+        document.getElementById("viewStock").textContent = data.stock;
+        document.getElementById("viewDescription").textContent =
+          data.description;
 
-    function closeProductModal() { closeModal('productModal'); }
-    function closeViewModal() { closeModal('viewModal'); }
+        try {
+          const categoryName = await getCategoryById(data.category);
+          document.getElementById("viewCategory").textContent = categoryName;
+        } catch (error) {
+          document.getElementById("viewCategory").textContent = "N/A";
+        }
 
-    function deleteProduct(id) {
-      if (!productsData[id]) return showToast('Không tìm thấy sản phẩm');
-      if (!confirmDelete('sản phẩm')) return;
-      delete productsData[id];
-      const rows = document.querySelectorAll('#productsBody tr');
-      rows.forEach(row => {
-        if (parseInt(row.cells[0].textContent) === id) row.remove();
-      });
-      showToast('Đã xóa sản phẩm');
-    }
+        openModal("viewModal");
+      };
 
-    let touchStartY = 0, touchEndY = 0;
-    function handleSwipe(modal) {
-      if (touchStartY - touchEndY > 100) {
-        modal.classList.add('closing');
-        setTimeout(() => { modal.style.display = 'none'; modal.classList.remove('closing'); }, 300);
+      window.closeProductModal = function () {
+        closeModal("productModal");
+      };
+      window.closeViewModal = function () {
+        closeModal("viewModal");
+      };
+
+      window.deleteProduct = async function (id) {
+        if (!window.productsData[id])
+          return showToast("Không tìm thấy sản phẩm");
+
+        if (!confirmDelete("sản phẩm")) return;
+
+        try {
+          await deleteProductApi(id);
+          showToast("Đã xóa sản phẩm thành công");
+          await fetchProducts(); // Reload table
+        } catch (error) {
+          console.error(error);
+          showToast("Xóa sản phẩm thất bại: " + error.message);
+        }
+      };
+
+      let touchStartY = 0,
+        touchEndY = 0;
+      function handleSwipe(modal) {
+        if (touchStartY - touchEndY > 100) {
+          modal.classList.add("closing");
+          setTimeout(() => {
+            modal.style.display = "none";
+            modal.classList.remove("closing");
+          }, 300);
+        }
       }
-    }
-    function addSwipeListener(modalId) {
-      const modal = document.getElementById(modalId);
-      if (!modal) return;
-      modal.addEventListener('touchstart', (e) => { touchStartY = e.changedTouches[0].screenY; }, false);
-      modal.addEventListener('touchend', (e) => { touchEndY = e.changedTouches[0].screenY; handleSwipe(modal); }, false);
-    }
-    addSwipeListener('productModal');
-    addSwipeListener('viewModal');
+      function addSwipeListener(modalId) {
+        const modal = document.getElementById(modalId);
+        if (!modal) return;
+        modal.addEventListener(
+          "touchstart",
+          (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+          },
+          false
+        );
+        modal.addEventListener(
+          "touchend",
+          (e) => {
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe(modal);
+          },
+          false
+        );
+      }
+      addSwipeListener("productModal");
+      addSwipeListener("viewModal");
 
-    document.getElementById('productForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const productId = this.dataset.productId;
-      if (productId) {
-        const data = productsData[productId];
-        if (data) {
-          data.name = document.getElementById('productName').value;
-          data.category = document.getElementById('category').value;
-          data.price = parseInt(document.getElementById('price').value);
-          data.stock = parseInt(document.getElementById('stock').value);
-          data.description = document.getElementById('description').value;
-          const rows = document.querySelectorAll('#productsBody tr');
-          rows.forEach(row => {
-            if (parseInt(row.cells[0].textContent) === parseInt(productId)) {
-              row.cells[1].textContent = data.name;
-              row.cells[2].textContent = data.category;
-              row.cells[3].textContent = formatCurrency(data.price);
-              row.cells[4].textContent = data.stock;
+      document
+        .getElementById("productForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const productId = this.dataset.productId;
+          if (productId) {
+            // Edit mode
+            const updatedData = {
+              name: document.getElementById("productName").value,
+              category: document.getElementById("category").value,
+              price: document.getElementById("price").value,
+              stock: document.getElementById("stock").value,
+              description: document.getElementById("description").value,
+            };
+
+            try {
+              await updateProduct(productId, updatedData);
+              showToast("Cập nhật sản phẩm thành công");
+              closeProductModal();
+              await fetchProducts();
+            } catch (error) {
+              console.error(error);
+              showToast("Cập nhật thất bại: " + error.message);
             }
-          });
-          showToast('Cập nhật sản phẩm thành công!');
-        }
-      } else {
-        showToast('Thêm sản phẩm mới thành công!');
-      }
-      closeProductModal();
-      this.dataset.productId = '';
-    });
-  </script>
-</body>
+          } else {
+            // Add mode
+            const newProduct = {
+              name: document.getElementById("productName").value,
+              category: document.getElementById("category").value,
+              price: document.getElementById("price").value,
+              stock: document.getElementById("stock").value,
+              description: document.getElementById("description").value,
+            };
+
+            try {
+              await insertNewProduct(newProduct);
+              showToast("Thêm sản phẩm mới thành công!");
+              closeProductModal();
+              // Refresh the table
+              await fetchProducts();
+            } catch (error) {
+              console.error(error);
+              showToast("Lỗi khi thêm sản phẩm", "error");
+            }
+          }
+          this.dataset.productId = "";
+        });
+    </script>
+  </body>
 </html>
