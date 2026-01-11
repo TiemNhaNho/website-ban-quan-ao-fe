@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,24 +55,24 @@
           <a href="shop.html" title="Casual Wears">Casual Wears</a>
         </li>
         <li class="cat-list-item">
-          </div>
-          </div>
-          </section>
-
-          <div data-include="header"></div>                      
-                      <script src="js/include.js"></script>
-                      <script src="js/jquery-1.11.0.min.js"></script>
-                      <script src="js/plugins.js"></script>
-                      <script src="js/script.js"></script>                     
-                  </ul>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
     </div>
+  </div>
+  </section>
+
+  <div data-include="header"></div>
+  <script src="js/include.js"></script>
+  <script src="js/jquery-1.11.0.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/script.js"></script>
+  </ul>
+  </div>
+
+  </div>
+  </div>
+  </div>
+  </div>
+  </nav>
+  </div>
   </header>
 
   <section class="site-banner padding-small bg-light-grey">
@@ -101,7 +100,6 @@
           <div class="row d-flex">
             <h3 class="cart-title col-lg-4">Product</h3>
             <h3 class="cart-title col-lg-3">Quantity</h3>
-            <h3 class="cart-title col-lg-4">Subtotal</h3>
           </div>
         </div>
         <div id="cart-items"></div>
@@ -116,7 +114,6 @@
                 <td data-title="Subtotal">
                   <span class="price-amount amount text-primary">
                     <bdi>
-                      <span class="price-currency-symbol">$</span>2,370.00
                     </bdi>
                   </span>
                 </td>
@@ -126,15 +123,33 @@
                 <td data-title="Total">
                   <span class="price-amount amount text-primary">
                     <bdi>
-                      <span class="price-currency-symbol">$</span>2,370.00</bdi>
                   </span>
                 </td>
               </tr>
+
+              <!-- Coupon row 
+              <tr class="coupon-row">
+                <th>Coupon</th>
+                <td>
+                  <input type="text" id="coupon-code" placeholder="Enter coupon code"
+                    style="width: 100%; padding: 6px;">
+                </td>
+              </tr>-->
+
+              <!-- Shipping row 
+              <tr class="shipping-row">
+                <th>Shipping</th>
+                <td>
+                  <select id="shipping-method" style="width: 100%; padding: 6px;">
+                    <option value="">Loading shipping methods...</option>
+                  </select>
+                </td>
+              </tr>-->
+              
             </tbody>
           </table>
         </div>
         <div class="button-wrap">
-          <a href="cart.html"><button class="btn btn-dark btn-medium">Update Cart</button></a>
           <a href="shop.html"><button class="btn btn-dark btn-medium">Continue Shopping</button></a>
           <a href="checkout.html"><button class="btn btn-dark btn-medium">Proceed to checkout</button></a>
         </div>

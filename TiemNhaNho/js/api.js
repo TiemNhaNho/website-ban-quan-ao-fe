@@ -35,6 +35,46 @@ export async function deleteCartItem(itemId) {
   return res.status === 204 ? true : await res.json()
 }
 
+async function updateCartItemQuantity(itemId, quantity) {
+  const res = await fetch(
+    `${API_BASE_URL}/carts/${itemId}?quantity=${parseInt(quantity, 10)}`,
+    {
+      method: "PATCH"
+    }
+  )
+
+  if (!res.ok) throw new Error("Failed to update cart item quantity")
+  return await res.json()
+}
+
+window.updateCartItemQuantity = updateCartItemQuantity
+
+// // FE API
+// async function loadCouponAndShippingOptions() {
+//   try {
+//     // Coupons
+//     const couponsRes = await fetch(`${API_BASE_URL}/coupons-select/options`)
+//     const coupons = await couponsRes.json()
+//     const couponInput = document.getElementById("coupon-code")
+//     // nếu muốn làm dropdown thay vì input, map ra option
+//     // couponInput.value = "" // input thì thôi
+
+//     // Shipping methods
+//     const shippingRes = await fetch(`${API_BASE_URL}/shipping-methods-select/options`)
+//     const shipping = await shippingRes.json()
+//     const shippingSelect = document.getElementById("shipping-method")
+
+//     shippingSelect.innerHTML = shipping.map(s => `
+//       <option value="${s.shipping_method_id}">${s.method_name}</option>
+//     `).join("")
+
+//   } catch (err) {
+//     console.error("Load coupon/shipping options failed", err)
+//   }
+// }
+
+// // gọi sau khi DOM load xong
+// document.addEventListener("DOMContentLoaded", loadCouponAndShippingOptions)
 /* ================= PRODUCT ================= */
 
 export async function getProducts() {

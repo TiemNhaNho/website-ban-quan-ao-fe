@@ -1,5 +1,26 @@
 import * as apis from './api.js'
 
+window.changeQty = async function (cartId, delta) {
+  const btn = event.currentTarget
+  const input = btn.parentElement.querySelector("input")
+  if (!input) return
+
+  let qty = parseInt(input.value, 10)
+  if (isNaN(qty)) qty = 1
+
+  qty += parseInt(delta, 10)
+  if (qty < 1) qty = 1
+  input.value = qty
+
+  try {
+    await window.updateCartItemQuantity(cartId, qty)
+    window.location.reload()
+  } catch (err) {
+    console.error(err)
+    alert("Cập nhật thất bại")
+  }
+}
+
 window.deleteCartItem = async function (itemId) {
   await apis.deleteCartItem(itemId)
   loadCartItems()
@@ -38,9 +59,9 @@ function renderCartItem(cart, product_image, product_variant, product) {
 
         <div class="col-lg-6 col-md-7">
           <div class="qty-number d-flex align-items-center">
-            <button>-</button>
+            <button onclick="changeQty(${cart.cart_id}, -1)">-</button>
             <input type="text" value="${cart.quantity}" min="1">
-            <button>+</button>
+            <button onclick="changeQty(${cart.cart_id}, 1)">+</button>
           </div>
         </div>
 
@@ -55,6 +76,29 @@ function renderCartItem(cart, product_image, product_variant, product) {
     </div>
   `
 }
+
+function renderCartSummary(cartItems, variants) {
+  const subtotal = cartItems.reduce((sum, item) => {
+    const variant = variants.find(
+      v => v.id === item.variant_id || v.variant_id === item.variant_id
+    )
+    const price = variant?.price_out ?? 0
+    return sum + price * item.quantity
+  }, 0)
+
+  const format = n => n.toLocaleString("en-US", { minimumFractionDigits: 2 })
+
+  // Subtotal
+  document.querySelector(".subtotal .price-amount bdi").innerHTML = `
+    <span class="price-currency-symbol">${format(subtotal)} vnd</span>
+  `
+
+  // Total (chưa có shipping / tax → = subtotal)
+  document.querySelector(".order-total .price-amount bdi").innerHTML = `
+    <span class="price-currency-symbol">${format(subtotal)} vnd</span>
+  `
+}
+
 
 async function loadCartItems() {
   const container = document.getElementById("cart-items")
@@ -88,6 +132,7 @@ async function loadCartItems() {
 
       return renderCartItem(item, image, variant, product)
     }).join("")
+    renderCartSummary(cartItems, variants)
   } catch (err) {
     console.error(err)
     container.innerHTML = "<p>Không tải được sản phẩm</p>"
