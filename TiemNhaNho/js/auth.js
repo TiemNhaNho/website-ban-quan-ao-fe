@@ -1,5 +1,9 @@
-// API Configuration
-const API_BASE_URL = "http://localhost:8000";
+
+// API Configuration (check if already defined)
+if (typeof API_BASE_URL === 'undefined') {
+    var API_BASE_URL = 'http://localhost:8000';
+}
+
 
 // Utility Functions
 function showMessage(message, type = "success") {
