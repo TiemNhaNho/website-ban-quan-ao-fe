@@ -1,250 +1,212 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quản lí Nhà Cung Cấp - Admin</title>
-  <link rel="stylesheet" href="../css/normalize.css">
-  <link rel="stylesheet" href="../icomoon/icomoon.css">
-  <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="css/admin-style.css">
-</head>
-<body class="admin-layout">
-  <div class="admin-container">
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <h2 class="logo">Tiệm Nhà Nhỏ</h2>
-      </div>
-      <nav class="sidebar-nav">
-        <ul class="nav-list">
-          <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="icon icon-home"></i><span>Dashboard</span></a></li>
-          <li class="nav-item"><a href="orders.html" class="nav-link"><i class="icon icon-shopping-bag"></i><span>Quản lí Đơn Hàng</span></a></li>
-          <li class="nav-item"><a href="products.html" class="nav-link"><i class="icon icon-package"></i><span>Quản lí Sản Phẩm</span></a></li>
-          <li class="nav-item"><a href="customers.html" class="nav-link"><i class="icon icon-users"></i><span>Quản lí Khách Hàng</span></a></li>
-          <li class="nav-item active"><a href="suppliers.html" class="nav-link"><i class="icon icon-truck"></i><span>Quản lí Nhà Cung Cấp</span></a></li>
-          <li class="nav-item"><a href="categories.html" class="nav-link"><i class="icon icon-list"></i><span>Quản lí Danh Mục</span></a></li>
-          <li class="nav-item"><a href="coupons.html" class="nav-link"><i class="icon icon-ticket"></i><span>Quản lí Mã Giảm Giá</span></a></li>
-        </ul>
-      </nav>
-    </aside>
-
-    <main class="main-content">
-      <header class="admin-header">
-        <div class="header-left">
-          <h1>Quản lí Nhà Cung Cấp</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lí Nhà Cung Cấp - Admin</title>
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <link rel="stylesheet" href="../icomoon/icomoon.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="css/admin-style.css" />
+  </head>
+  <body class="admin-layout">
+    <div class="admin-container">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2 class="logo">Tiệm Nhà Nhỏ</h2>
         </div>
-      </header>
+        <nav class="sidebar-nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="dashboard.html" class="nav-link"
+                ><i class="icon icon-home"></i><span>Dashboard</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="orders.html" class="nav-link"
+                ><i class="icon icon-shopping-bag"></i
+                ><span>Quản lí Đơn Hàng</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="products.html" class="nav-link"
+                ><i class="icon icon-package"></i
+                ><span>Quản lí Sản Phẩm</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="customers.html" class="nav-link"
+                ><i class="icon icon-users"></i
+                ><span>Quản lí Khách Hàng</span></a
+              >
+            </li>
+            <li class="nav-item active">
+              <a href="suppliers.html" class="nav-link"
+                ><i class="icon icon-truck"></i
+                ><span>Quản lí Nhà Cung Cấp</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="categories.html" class="nav-link"
+                ><i class="icon icon-list"></i><span>Quản lí Danh Mục</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="coupons.html" class="nav-link"
+                ><i class="icon icon-ticket"></i
+                ><span>Quản lí Mã Giảm Giá</span></a
+              >
+            </li>
+          </ul>
+        </nav>
+      </aside>
 
-      <section class="page-content">
-        <div class="container-fluid">
-          <div class="card">
-            <div class="card-header">
-              <h3>Danh Sách Nhà Cung Cấp</h3>
-              <div style="display: flex; gap: 1rem; align-items: center;">
-                <input type="text" id="searchInput" placeholder="Tìm kiếm nhà cung cấp..." onkeyup="searchTable()" style="padding: 0.5rem 1rem; border: 1px solid #ddd; border-radius: 4px; width: 250px;">
-                <button class="btn btn-primary" onclick="openAddModal()">+ Thêm Nhà Cung Cấp</button>
+      <main class="main-content">
+        <header class="admin-header">
+          <div class="header-left">
+            <h1>Quản lí Nhà Cung Cấp</h1>
+          </div>
+        </header>
+
+        <section class="page-content">
+          <div class="container-fluid">
+            <div class="card">
+              <div class="card-header">
+                <h3>Danh Sách Nhà Cung Cấp</h3>
+                <div style="display: flex; gap: 1rem; align-items: center">
+                  <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Tìm kiếm nhà cung cấp..."
+                    onkeyup="searchTable()"
+                    style="
+                      padding: 0.5rem 1rem;
+                      border: 1px solid #ddd;
+                      border-radius: 4px;
+                      width: 250px;
+                    "
+                  />
+                  <button class="btn btn-primary" onclick="openAddModal()">
+                    + Thêm Nhà Cung Cấp
+                  </button>
+                </div>
               </div>
+
+              <table class="table" id="suppliersTable">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Tên Nhà Cung Cấp</th>
+                    <th>Email</th>
+                    <th>SĐT</th>
+                    <th>Địa Chỉ</th>
+                    <th>Hành Động</th>
+                  </tr>
+                </thead>
+                <tbody id="suppliersBody">
+                  <!-- Suppliers will be loaded here -->
+                </tbody>
+              </table>
             </div>
-
-            <table class="table" id="suppliersTable">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Tên Nhà Cung Cấp</th>
-                  <th>Email</th>
-                  <th>SĐT</th>
-                  <th>Địa Chỉ</th>
-                  <th>Hành Động</th>
-                </tr>
-              </thead>
-              <tbody id="suppliersBody">
-                <tr class="supplier-row" onclick="openViewModal(1)">
-                  <td>1</td>
-                  <td>Công Ty Sợi XYZ</td>
-                  <td>info@soixyz.com</td>
-                  <td>0987654321</td>
-                  <td>123 Đường ABC, TP HCM</td>
-                  <td onclick="event.stopPropagation()">
-                    <button class="btn-icon" onclick="openEditModal(1)" title="Sửa"><img src="../images/sua.png" alt="Sửa" class="icon-img"></button>
-                    <button class="btn-icon" onclick="deleteSupplier(1)" title="Xóa"><img src="../images/huy.png" alt="Xóa" class="icon-img"></button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
           </div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <div class="modal" id="supplierModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Thêm/Sửa Nhà Cung Cấp</h2>
-        <button class="close-btn" onclick="closeModal()">&times;</button>
-      </div>
-      <form id="supplierForm">
-        <div class="form-group">
-          <label>Tên Nhà Cung Cấp</label>
-          <input type="text" required>
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" required>
-        </div>
-        <div class="form-group">
-          <label>SĐT</label>
-          <input type="tel" required>
-        </div>
-        <div class="form-group">
-          <label>Địa Chỉ</label>
-          <textarea rows="3" required></textarea>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" onclick="closeModal()">Hủy</button>
-          <button type="submit" class="btn btn-primary">Lưu</button>
-        </div>
-      </form>
+        </section>
+      </main>
     </div>
-  </div>
 
-  <script>
-    function searchTable() {
-      const input = document.getElementById('searchInput').value.toLowerCase();
-      const tbody = document.getElementById('suppliersBody');
-      const rows = tbody.getElementsByTagName('tr');
-      
-      for (let row of rows) {
-        const name = row.cells[1]?.textContent || '';
-        const email = row.cells[2]?.textContent || '';
-        const phone = row.cells[3]?.textContent || '';
-        
-        if (name.toLowerCase().includes(input) || 
-            email.toLowerCase().includes(input) || 
-            phone.toLowerCase().includes(input)) {
-          row.style.display = '';
-        } else {
-          row.style.display = 'none';
-        }
-      }
-    }
-
-    const suppliersData = {
-      1: { id: 1, name: 'Công Ty Sợi XYZ', email: 'info@soixyz.com', phone: '0987654321', address: '123 Đường ABC, TP HCM', contactPerson: 'Nguyễn Văn C' },
-      2: { id: 2, name: 'Công Ty May DEF', email: 'contact@maydef.com', phone: '0912345678', address: '456 Đường XYZ, HN', contactPerson: 'Trần Thị D' }
-    };
-
-    function openAddModal() {
-      document.getElementById('supplierForm').reset();
-      document.getElementById('supplierForm').dataset.supplierId = '';
-      openModal('supplierModal');
-    }
-
-    function openEditModal(id) {
-      const supplier = suppliersData[id];
-      const inputs = document.querySelectorAll('#supplierForm input, #supplierForm textarea');
-      inputs[0].value = supplier.name;
-      inputs[1].value = supplier.email;
-      inputs[2].value = supplier.phone;
-      inputs[3].value = supplier.address;
-      document.getElementById('supplierForm').dataset.supplierId = id;
-      openModal('supplierModal');
-    }
-
-    function openViewModal(id) {
-      const supplier = suppliersData[id];
-      const modal = document.createElement('div');
-      modal.className = 'modal';
-      modal.id = 'viewModal';
-      modal.style.display = 'block';
-      modal.innerHTML = `
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2>Chi Tiết Nhà Cung Cấp</h2>
-            <button class="close-btn" onclick="this.closest('.modal').remove()">&times;</button>
-          </div>
-          <div class="modal-body">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-              <div><strong>Tên:</strong> <p>${supplier.name}</p></div>
-              <div><strong>Email:</strong> <p>${supplier.email}</p></div>
-              <div><strong>SĐT:</strong> <p>${supplier.phone}</p></div>
-              <div><strong>Người Liên Hệ:</strong> <p>${supplier.contactPerson}</p></div>
-              <div colspan="2"><strong>Địa Chỉ:</strong> <p>${supplier.address}</p></div>
-            </div>
-          </div>
+    <div class="modal" id="supplierModal">
+      <div class="modal-content" style="padding: 24px">
+        <div class="modal-header">
+          <h2>Thêm/Sửa Nhà Cung Cấp</h2>
+          <button class="close-btn" onclick="closeModal()">&times;</button>
         </div>
-      `;
-      document.body.appendChild(modal);
-      addSwipeListener('viewModal');
-    }
+        <form id="supplierForm">
+          <div class="form-group">
+            <label>Tên Nhà Cung Cấp</label>
+            <input type="text" required />
+          </div>
+          <div class="form-group" style="display: none">
+            <!-- Hidden email as API handles name, phone, address -->
+            <label>Email</label>
+            <input type="email" />
+          </div>
+          <div class="form-group">
+            <label>SĐT</label>
+            <input type="tel" required />
+          </div>
+          <div class="form-group">
+            <label>Địa Chỉ</label>
+            <textarea rows="3" required></textarea>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal()"
+            >
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-    function deleteSupplier(id) {
-      if(!confirmDelete('nhà cung cấp')) return;
-      delete suppliersData[id];
-      const tbody = document.getElementById('suppliersBody');
-      tbody.querySelectorAll('tr').forEach(row => {
-        if(parseInt(row.cells[0].textContent) === id) row.remove();
-      });
-      showToast('Đã xóa nhà cung cấp');
-    }
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="js/admin.js"></script>
+    <script type="module">
+      import { getAllSuppliers, handleSupplierSubmit } from "./js/suppliers.js";
 
-    function addSwipeListener(modalId) {
-      const modal = document.getElementById(modalId);
-      let touchStartY = 0;
-      modal.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; });
-      modal.addEventListener('touchend', e => {
-        if(touchStartY - e.changedTouches[0].clientY > 100) {
-          modal.classList.add('closing');
-          setTimeout(() => modal.remove(), 300);
+      document.addEventListener("DOMContentLoaded", getAllSuppliers);
+
+      document
+        .getElementById("supplierForm")
+        .addEventListener("submit", handleSupplierSubmit);
+
+      // Override searchTable
+      window.searchTable = function () {
+        const input = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const tbody = document.getElementById("suppliersBody");
+        const rows = tbody.getElementsByTagName("tr");
+
+        for (let row of rows) {
+          const name = row.cells[1]?.textContent || "";
+          const phone = row.cells[2]?.textContent || "";
+          const address = row.cells[3]?.textContent || "";
+
+          if (
+            name.toLowerCase().includes(input) ||
+            phone.toLowerCase().includes(input) ||
+            address.toLowerCase().includes(input)
+          ) {
+            row.style.display = "";
+          } else {
+            row.style.display = "none";
+          }
         }
-      });
-    }
-
-    document.getElementById('supplierForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const inputs = this.querySelectorAll('input, textarea');
-      const supplierId = this.dataset.supplierId;
-      const id = supplierId ? parseInt(supplierId) : Math.max(...Object.keys(suppliersData).map(Number)) + 1;
-      
-      suppliersData[id] = {
-        id: id,
-        name: inputs[0].value,
-        email: inputs[1].value,
-        phone: inputs[2].value,
-        address: inputs[3].value,
-        contactPerson: suppliersData[id]?.contactPerson || ''
       };
 
-      const tbody = document.getElementById('suppliersBody');
-      const existingRow = tbody.querySelector(`tr[data-id="${id}"]`);
-      
-      if(existingRow) {
-        existingRow.cells[1].textContent = inputs[0].value;
-        existingRow.cells[2].textContent = inputs[1].value;
-        existingRow.cells[3].textContent = inputs[2].value;
-        existingRow.cells[4].textContent = inputs[3].value;
-      } else {
-        const row = tbody.insertRow();
-        row.className = 'supplier-row';
-        row.dataset.id = id;
-        row.onclick = () => openViewModal(id);
-        row.innerHTML = `
-          <td>${id}</td>
-          <td>${inputs[0].value}</td>
-          <td>${inputs[1].value}</td>
-          <td>${inputs[2].value}</td>
-          <td>${inputs[3].value}</td>
-          <td onclick="event.stopPropagation()">
-            <button class="btn-icon" onclick="openEditModal(${id})"><img src="../images/sua.png" alt="Sửa" class="icon-img"></button>
-            <button class="btn-icon" onclick="deleteSupplier(${id})"><img src="../images/huy.png" alt="Xóa" class="icon-img"></button>
-          </td>
-        `;
+      // Swipe listener
+      function addSwipeListener(modalId) {
+        const modal = document.getElementById(modalId);
+        if (!modal) return;
+        let touchStartY = 0;
+        modal.addEventListener("touchstart", (e) => {
+          touchStartY = e.touches[0].clientY;
+        });
+        modal.addEventListener("touchend", (e) => {
+          if (touchStartY - e.changedTouches[0].clientY > 100) {
+            modal.classList.add("closing");
+            setTimeout(() => {
+              modal.style.display = "none";
+              modal.classList.remove("closing");
+            }, 300);
+          }
+        });
       }
 
-      showToast('Lưu nhà cung cấp thành công');
-      closeModal('supplierModal');
-    });
-  </script>
-  <script src="js/admin.js"></script>
-</body>
+      addSwipeListener("supplierModal");
+    </script>
+  </body>
 </html>
