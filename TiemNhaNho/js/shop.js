@@ -3,7 +3,7 @@ import * as apis from './api.js'
 window.addToCart = async function (variantId, quantity = 1) {
   //const customerId = Number(localStorage.getItem("customer_id")) //use this for when user login
   //for test
-  const customerId = 1
+  const customerId = 2
 
   if (!customerId || !variantId) {
     console.error("Missing customerId or variantId", customerId, variantId)
@@ -11,6 +11,8 @@ window.addToCart = async function (variantId, quantity = 1) {
   }
 
   await apis.addToCart(customerId, variantId, quantity)
+  // redirect to cart page
+  window.location.href = "cart.html"
 }
 
 function renderProduct(product, product_variant, product_image) {
@@ -21,7 +23,7 @@ function renderProduct(product, product_variant, product_image) {
     <div class="product-item col-lg-4 col-md-6 col-sm-6">
       <div class="image-holder">
         <img 
-          src="${product_image?.image_url || 'images/no-image.png'}" 
+          src="${product_image?.image_url}" 
           alt="${product.product_name}" 
           class="product-image">
       </div>

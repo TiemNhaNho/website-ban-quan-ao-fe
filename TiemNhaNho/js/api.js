@@ -9,6 +9,12 @@ export async function getAllCartItems() {
   return await res.json()
 }
 
+export async function getAllCartItemsById(customerId) {
+  const res = await fetch(`${API_BASE_URL}/carts-by-customer/${customerId}`)
+  if (!res.ok) throw new Error("Fetch cart items failed")
+  return await res.json()
+}
+
 // POST /carts
 export async function addToCart(customerId, variantId, quantity) {
   const res = await fetch(`${API_BASE_URL}/carts`, {
@@ -102,8 +108,63 @@ export async function createOrder(data) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
-  })
+  });
 
-  if (!res.ok) throw new Error("Create order failed")
+  if (!res.ok) {
+    let errData;
+    try {
+      errData = await res.json();
+    } catch {
+      errData = await res.text();
+    }
+    console.error("Create order API error:", errData);
+    throw new Error("Create order failed: " + (errData.detail || JSON.stringify(errData)));
+  }
+
+  return await res.json();
+}
+
+export async function getAllOrdersById(orderId) {
+  const res = await fetch(`${API_BASE_URL}/orders/${orderId}`)
+  if (!res.ok) throw new Error("Fetch orders failed")
   return await res.json()
+}
+
+/* ================= VARIANTS ================= */
+export async function fetchVariantById(variantId) {
+  const res = await fetch(`${API_BASE_URL}/product-variants/${variantId}`);
+  if (!res.ok) throw new Error("Fetch variant failed");
+  return await res.json();
+}
+
+/* ================= COUPONS-DROPDOWN ================= */
+export async function getCouponOptions() {
+  const res = await fetch(`${API_BASE_URL}/coupons-select/options`)
+  if (!res.ok) throw new Error("Fetch coupon options failed")
+  return await res.json()
+}
+/* ================= SHIPPING-DROPDOWN ================= */
+export async function getShippingOptions() {
+  const res = await fetch(`${API_BASE_URL}/shipping-methods-select/options`)
+  if (!res.ok) throw new Error("Fetch shipping options failed")
+  return await res.json()
+}
+
+export async function getShippingById(shipping_method_id) {
+  const res = await fetch(`${API_BASE_URL}/shipping-methods/${shipping_method_id}`);
+  if (!res.ok) throw new Error("Fetch shipping method failed");
+  return await res.json();
+  
+}
+
+export async function getCurrentCustomer(){
+  const res = await fetch(`${API_BASE_URL}/me`)
+  if (!res.ok) throw new Error("Fetch current customer failed")
+  return await res.json()
+}
+
+export async function getCouponById(coupon_id){
+  const res = await fetch(`${API_BASE_URL}/coupons/${coupon_id}`);
+  if (!res.ok) throw new Error("Fetch coupon failed");
+  return await res.json();
 }
