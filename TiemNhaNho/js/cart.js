@@ -1,5 +1,8 @@
 import * as apis from './api.js'
 
+// for test
+const CUSTOMER_ID = 2;
+
 window.changeQty = async function (cartId, delta) {
   const btn = event.currentTarget
   const input = btn.parentElement.querySelector("input")
@@ -23,7 +26,7 @@ window.changeQty = async function (cartId, delta) {
 
 window.deleteCartItem = async function (itemId) {
   await apis.deleteCartItem(itemId)
-  loadCartItems()
+  loadCartItemsById(CUSTOMER_ID)
 }
 
 function renderCartItem(cart, product_image, product_variant, product) {
@@ -94,18 +97,18 @@ function renderCartSummary(cartItems, variants) {
   `
 
   // Total (chưa có shipping / tax → = subtotal)
-  document.querySelector(".order-total .price-amount bdi").innerHTML = `
-    <span class="price-currency-symbol">${format(subtotal)} vnd</span>
-  `
+  // document.querySelector(".order-total .price-amount bdi").innerHTML = `
+  //   <span class="price-currency-symbol">${format(subtotal)} vnd</span>
+  // `
 }
 
 
-async function loadCartItems() {
+async function loadCartItemsById(customerId) {
   const container = document.getElementById("cart-items")
 
   try {
     const [cartRes, imageRes, productRes, variantRes] = await Promise.all([
-      apis.getAllCartItems(),
+      apis.getAllCartItemsById(customerId),
       apis.getProductImages(),
       apis.getProducts(),
       apis.getProductVariants()
@@ -139,5 +142,5 @@ async function loadCartItems() {
   }
 }
 
-loadCartItems()
+loadCartItemsById(CUSTOMER_ID)
 
