@@ -51,7 +51,7 @@ async function handleLogin(event) {
   event.preventDefault();
 
   const email = document.querySelector(
-    '#nav-sign-in input[name="username"]'
+    '#loginForm input[name="username"]'
   ).value;
 
   // Prevent handling admin login logic here, it is handled in admin-login.js
@@ -60,7 +60,7 @@ async function handleLogin(event) {
   }
 
   const password = document.querySelector(
-    '#nav-sign-in input[name="password"]'
+    '#loginForm input[name="password"]'
   ).value;
 
   if (!email || !password) {
@@ -110,14 +110,11 @@ async function handleLogin(event) {
 async function handleRegister(event) {
   event.preventDefault();
 
-  const username = document.querySelector(
-    '#nav-register input[name="username"]'
-  ).value;
   const email = document.querySelector(
-    '#nav-register input[name="username"]'
+    '#registerForm input[name="username"]'
   ).value;
   const password = document.querySelector(
-    '#nav-register input[name="password"]'
+    '#registerForm input[name="password"]'
   ).value;
 
   if (!email || !password) {
@@ -150,7 +147,7 @@ async function handleRegister(event) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: username || email.split("@")[0],
+        username: email.split("@")[0],
         email: email,
         password: password,
       }),
@@ -160,19 +157,18 @@ async function handleRegister(event) {
 
     if (data.code === "201") {
       showMessage(
-        "Đăng ký thành công! Vui lòng kiểm tra email để kích hoạt tài khoản.",
+        "Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.",
         "success"
       );
 
-      // Switch to login tab after 2 seconds
+      // Pre-fill email in login form and switch to login tab
       setTimeout(() => {
+        document.querySelector('#loginForm input[name="username"]').value = email;
         document.querySelector("#nav-sign-in-tab").click();
         // Clear register form
-        document.querySelector('#nav-register input[name="username"]').value =
-          "";
-        document.querySelector('#nav-register input[name="password"]').value =
-          "";
-      }, 2000);
+        document.querySelector('#registerForm input[name="username"]').value = "";
+        document.querySelector('#registerForm input[name="password"]').value = "";
+      }, 1500);
     } else if (data.code === "400") {
       showMessage("Email đã tồn tại", "error");
     } else {
@@ -241,21 +237,15 @@ async function updateUIForAuth() {
 // Initialize on page load
 document.addEventListener("DOMContentLoaded", function () {
   // Check if on login page
-  const loginForm = document.querySelector("#nav-sign-in");
-  const registerForm = document.querySelector("#nav-register");
+  const loginForm = document.querySelector("#loginForm");
+  const registerForm = document.querySelector("#registerForm");
 
   if (loginForm) {
-    const loginButton = loginForm.querySelector('button[type="submit"]');
-    if (loginButton) {
-      loginButton.addEventListener("click", handleLogin);
-    }
+    loginForm.addEventListener("submit", handleLogin);
   }
 
   if (registerForm) {
-    const registerButton = registerForm.querySelector('button[type="submit"]');
-    if (registerButton) {
-      registerButton.addEventListener("click", handleRegister);
-    }
+    registerForm.addEventListener("submit", handleRegister);
   }
 
   // Update UI for authenticated users
