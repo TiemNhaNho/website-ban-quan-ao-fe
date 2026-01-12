@@ -1,9 +1,7 @@
-
 // API Configuration (check if already defined)
-if (typeof API_BASE_URL === 'undefined') {
-    var API_BASE_URL = 'http://localhost:8000';
+if (typeof API_BASE_URL === "undefined") {
+  var API_BASE_URL = "https://tiem-nha-nho-api.onrender.com";
 }
-
 
 // Utility Functions
 function showMessage(message, type = "success") {
@@ -201,9 +199,13 @@ async function getCurrentUser() {
     const data = await response.json();
 
     if (data.code === "200" && data.data) {
+      localStorage.setItem("userId", JSON.stringify(data.data.id));
+      localStorage.setItem("userName", data.data.username);
+      localStorage.setItem("userEmail", data.data.email);
       return data.data;
     } else {
       removeToken();
+      removeUserData();
       return null;
     }
   } catch (error) {
@@ -212,9 +214,16 @@ async function getCurrentUser() {
   }
 }
 
+function removeUserData() {
+  localStorage.removeItem("userId");
+  localStorage.removeItem("userName");
+  localStorage.removeItem("userEmail");
+}
+
 // Logout Function
 function handleLogout() {
   removeToken();
+  removeUserData();
   showMessage("Đã đăng xuất", "success");
   setTimeout(() => {
     window.location.href = "login.html";
