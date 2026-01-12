@@ -65,7 +65,7 @@ export function openCategoryModal(mode, id = null) {
     const category = window.categoriesData[id];
     if (category) {
       const inputs = form.querySelectorAll("input, textarea");
-      // Assuming inputs[0] is Name, inputs[1] is Description
+      // Assuming inputs[0] is Name
       if (inputs[0]) inputs[0].value = category.category_name;
       form.dataset.categoryId = id;
     }
@@ -92,7 +92,7 @@ export async function handleCategorySubmit(e) {
   const token = localStorage.getItem("adminToken");
 
   try {
-    const payload = { category_name: name, description: description };
+    const payload = { category_name: name };
 
     if (id) {
       // Update
