@@ -1,7 +1,8 @@
 import * as apis from './api.js'
 
+const CUSTOMER_ID = Number(localStorage.getItem("userId"))
 // for test
-const CUSTOMER_ID = 2;
+//const CUSTOMER_ID = 2;
 
 window.changeQty = async function (cartId, delta) {
   const btn = event.currentTarget

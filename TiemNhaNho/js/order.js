@@ -1,7 +1,7 @@
 import * as apis from "./api.js";
-// const CUSTOMER_ID = Number(localStorage.getItem("userId")) //use this for when user login
+const CUSTOMER_ID = Number(localStorage.getItem("userId")) //use this for when user login
 // for test
-const CUSTOMER_ID = 2;
+//const CUSTOMER_ID = 2;
 //const orderListEl = document.getElementById("order-list");
 
 let subtotalValue = 0
