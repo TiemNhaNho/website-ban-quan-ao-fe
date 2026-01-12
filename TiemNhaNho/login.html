@@ -302,24 +302,6 @@
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
   
-  <!-- OAuth Functions - MUST BE BEFORE auth.js -->
-  <script>
-    // OAuth Configuration - Use var to avoid conflict with auth.js
-    var API_BASE_URL = 'http://localhost:8000';
-    
-    // OAuth Login Functions
-    function loginWithGoogle() {
-      console.log('Redirecting to Google OAuth...');
-      window.location.href = API_BASE_URL + '/auth/google';
-    }
-    
-    function loginWithFacebook() {
-      console.log('Redirecting to Facebook OAuth...');
-      window.location.href = API_BASE_URL + '/auth/facebook';
-    }
-  </script>
-  
-  <script src="js/auth.js"></script>
   
   <style>
     /* Social Login Button Hover Effects */
