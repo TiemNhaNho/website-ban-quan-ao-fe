@@ -1,9 +1,9 @@
 import * as apis from './api.js'
 // expose global
 window.addToCart = async function (variantId, quantity = 1) {
-  //const customerId = Number(localStorage.getItem("customer_id")) //use this for when user login
+  const customerId = Number(localStorage.getItem("userId")) //use this for when user login
   //for test
-  const customerId = 2
+  //const customerId = 2
 
   if (!customerId || !variantId) {
     console.error("Missing customerId or variantId", customerId, variantId)
