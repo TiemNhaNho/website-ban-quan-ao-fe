@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -127,9 +126,9 @@
         <div class="col-md-6">
           <div class="product-info">
             <div class="element-header">
-              <h2 itemprop="name" class="product-title">Pink baggy jacket</h2>
+              <h2 itemprop="name" class="product-title"></h2>
               <div class="rating-container d-flex align-items-center">
-                <div class="rating" data-rating="1" onclick=rate(1)>
+                <!-- <div class="rating" data-rating="1" onclick=rate(1)>
                   <i class="icon icon-star-full"></i>
                 </div>
                 <div class="rating" data-rating="2" onclick=rate(1)>
@@ -144,50 +143,29 @@
                 <div class="rating" data-rating="5" onclick=rate(1)>
                   <i class="icon icon-star-empty"></i>
                 </div>
-                <span class="rating-count">(3.5)</span>
+                <span class="rating-count">(3.5)</span> -->
               </div>
             </div>
             <div class="product-price">
-              <strong>$54.00</strong>
-              <del>$54.00</del>
+              <strong></strong>
             </div>
-            <p>Tristique ullamcorper nunc egestas non. Justo, cum feugiat imperdiet nulla molestie ac vulputate
-              scelerisque amet. Bibendum adipiscing platea blandit sit sed quam semper rhoncus. Diam ultrices maecenas
-              consequat eu tortor. Orci, cras lectus mauris, cras egestas quam venenatis neque.</p>
+            <p id="p-description"></p>
             <div class="cart-wrap margin-small">
               <div class="color-options product-select">
                 <div class="color-toggle" data-option-index="0">
                   <h4 class="item-title no-margin">Color:</h4>
                   <ul class="select-list list-unstyled d-flex">
-                    <li class="select-item" data-val="Green" title="Green">
-                      <a href="#">Green</a>
-                    </li>
-                    <li class="select-item" data-val="Orange" title="Orange">
-                      <a href="#">Orange</a>
-                    </li>
-                    <li class="select-item" data-val="Red" title="Red">
-                      <a href="#">Red</a>
-                    </li>
                   </ul>
                 </div>
               </div>
               <div class="swatch product-select" data-option-index="1">
                 <h4 class="item-title no-margin">Size:</h4>
                 <ul class="select-list list-unstyled d-flex">
-                  <li data-value="S" class="select-item">
-                    <a href="#">S</a>
-                  </li>
-                  <li data-value="M" class="select-item">
-                    <a href="#">M</a>
-                  </li>
-                  <li data-value="L" class="select-item">
-                    <a href="#">L</a>
-                  </li>
                 </ul>
               </div>
               <div class="product-quantity">
                 <div class="item-title">
-                  <strong>2 in stock</strong>
+                  <strong></strong> in stock
                 </div>
                 <div class="stock-button-wrap">
                   <div class="product-quantity d-flex align-items-center">
@@ -203,49 +181,20 @@
                   </div>
                 </div>
               </div>
-              <div class="action-buttons">
-                <button type="submit" class="btn btn-medium btn-dark">Buy now</button>
-                <button type="submit" name="add" id="add-to-cart" class="btn btn-medium btn-dark">
-                  <span id="add-to-cart">Add to cart</span>
-                </button>
-                <button type="submit" class="btn btn-medium btn-dark"><i class="icon icon-heart"></i></button>
+              <div class="meta-product margin-small">
+                <div class="meta-item d-flex flex-wrap align-items-baseline">
+                  <h4 class="item-title no-margin">Category:</h4>
+                  <ul class="select-list list-unstyled d-flex">
+                    <strong id="category-value"></strong>
+                  </ul>
+                </div>
+                <div class="action-buttons">
+                  <button type="button" class="btn btn-medium btn-dark" onclick="addToCartFromDetail(1)">
+                    Add to cart
+                  </button>
+                </div>
               </div>
-            </div>
-            <div class="meta-product margin-small">
-              <div class="meta-item d-flex flex-wrap align-items-baseline">
-                <h4 class="item-title no-margin">SKU:</h4>
-                <ul class="select-list list-unstyled d-flex">
-                  <li data-value="S" class="select-item">1223</li>
-                </ul>
-              </div>
-              <div class="meta-item d-flex flex-wrap align-items-baseline">
-                <h4 class="item-title no-margin">Category:</h4>
-                <ul class="select-list list-unstyled d-flex">
-                  <li data-value="S" class="select-item">
-                    <a href="#">Women</a>,
-                  </li>
-                  <li data-value="S" class="select-item">
-                    <a href="#">Popular</a>,
-                  </li>
-                  <li data-value="S" class="select-item">
-                    <a href="#">Orange</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="meta-item d-flex flex-wrap align-items-baseline">
-                <h4 class="item-title no-margin">Tags:</h4>
-                <ul class="select-list list-unstyled d-flex">
-                  <li data-value="S" class="select-item">
-                    <a href="#">Classic</a>,
-                  </li>
-                  <li data-value="S" class="select-item">
-                    <a href="#">Winter</a>,
-                  </li>
-                  <li data-value="S" class="select-item">
-                    <a href="#">Modern</a>
-                  </li>
-                </ul>
-              </div>
+
             </div>
           </div>
         </div>
@@ -318,22 +267,6 @@
                 </div>
                 <div class="review-content">
                   <div class="rating-container d-flex align-items-center">
-                    <div class="rating">
-                      <i class="icon icon-star-full"></i>
-                    </div>
-                    <div class="rating">
-                      <i class="icon icon-star-full"></i>
-                    </div>
-                    <div class="rating">
-                      <i class="icon icon-star-full"></i>
-                    </div>
-                    <div class="rating">
-                      <i class="icon icon-star-half"></i>
-                    </div>
-                    <div class="rating">
-                      <i class="icon icon-star-empty"></i>
-                    </div>
-                    <span class="rating-count">(3.5)</span>
                   </div>
                   <div class="review-header">
                     <span class="author-name">Tom Johnson</span>
@@ -739,6 +672,7 @@
   <script src="js/jquery-1.11.0.min.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
+  <script type="module" src="js/product-detail.js"></script>
 </body>
 
 </html>

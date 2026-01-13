@@ -29,10 +29,12 @@ function renderProduct(product, product_variant, product_image) {
   return `
     <div class="product-item col-lg-4 col-md-6 col-sm-6">
       <div class="image-holder">
+        <a href="single-product.html?id=${product.product_id}">
         <img 
           src="${product_image?.image_url}" 
           alt="${product.product_name}" 
           class="product-image">
+        </a>
       </div>
 
       <div class="cart-concern">
@@ -53,7 +55,7 @@ function renderProduct(product, product_variant, product_image) {
           </a>
         </h3>
         <div class="item-price text-primary">
-          $${priceOut.toFixed(2)}
+          ${priceOut}K VND
         </div>
       </div>
     </div>
