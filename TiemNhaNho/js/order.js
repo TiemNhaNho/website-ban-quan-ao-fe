@@ -199,14 +199,9 @@ console.log("Stripe paymentMethod:", paymentMethod);
 
   // 3️⃣ Tạo order qua API
   try {
-    const result = await apis.createOrder(orderData);
+    await apis.createOrder(orderData);
+    window.location.href = "index.html";
 
-    if (result.status === "success") {
-      alert("Thanh toán thành công");
-      loadOrders(); // reload danh sách order nếu cần
-    } else {
-      alert(result.detail || "Thanh toán thất bại");
-    }
   } catch (err) {
     console.error(err);
     alert("Đặt hàng thất bại: " + err.message);

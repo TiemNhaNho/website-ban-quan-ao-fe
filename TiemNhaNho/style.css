@@ -2884,3 +2884,8 @@ section.categories .category-content a{
 .jarallax.min-height300 {
     min-height: 300px;
 }
+.select-item a.active {
+  background-color: rgb(0, 133, 185);
+  color: #000;
+  border-radius: 4px;
+}

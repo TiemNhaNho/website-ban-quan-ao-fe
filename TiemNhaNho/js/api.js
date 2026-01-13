@@ -95,7 +95,11 @@ export async function getProductVariants() {
   if (!res.ok) throw new Error("Fetch product variants failed")
   return await res.json()
 }
-
+export async function getProductsById(product_id){
+  const res = await fetch(`${API_BASE_URL}/products/${product_id}`)
+  if (!res.ok) throw new Error("Fetch products failed")
+  return await res.json()
+}
 export async function getProductImages() {
   const res = await fetch(`${API_BASE_URL}/product-images`)
   if (!res.ok) throw new Error("Fetch product images failed")
@@ -138,6 +142,11 @@ export async function fetchVariantById(variantId) {
   return await res.json();
 }
 
+export async function getAllVariantsByProductID(product_id) {
+  const res = await fetch(`${API_BASE_URL}/product-variants-by-product/${product_id}`);
+  if (!res.ok) throw new Error("Fetch variant failed");
+  return await res.json();
+}
 /* ================= COUPONS-DROPDOWN ================= */
 export async function getCouponOptions() {
   const res = await fetch(`${API_BASE_URL}/coupons-select/options`)
@@ -169,3 +178,21 @@ export async function getCouponById(coupon_id){
   if (!res.ok) throw new Error("Fetch coupon failed");
   return await res.json();
 }
+
+export async function getAllImagesByProductID(product_id){
+  const res = await fetch(`${API_BASE_URL}/product-images-by-product/${product_id}`);
+  if (!res.ok) throw new Error("Fetch variant failed");
+  return await res.json();
+}
+
+export async function getAllReviewsByProductID(product_id) {
+    const res = await fetch(`${API_BASE_URL}/product-reviews-by-product/${product_id}`);
+  if (!res.ok) throw new Error("Fetch variant failed");
+  return await res.json();
+}
+
+export async function getCategoryByID(category_id) {
+    const res = await fetch(`${API_BASE_URL}/categories/${category_id}`);
+  if (!res.ok) throw new Error("Fetch category failed");
+  return await res.json();
+} 
