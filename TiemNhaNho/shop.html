@@ -109,6 +109,15 @@
 
         <section id="selling-products" class="col-md-9 product-store">
           <div class="container">
+            
+            <!-- Search Bar -->
+            <div class="widget-search-bar mb-4">
+              <form role="search" method="get" class="d-flex" id="product-search-form">
+                <input class="search-field" placeholder="Search products..." type="text" id="product-search-input" style="flex: 1; padding: 12px 20px; border: 1px solid #ddd; border-radius: 4px 0 0 4px;">
+                <button type="submit" class="btn btn-dark" style="border-radius: 0 4px 4px 0; padding: 12px 24px;"><i class="icon icon-search"></i> Search</button>
+              </form>
+            </div>
+            
             <ul class="tabs list-unstyled">
               <li data-tab-target="#all" class="active tab">All</li>
               <li data-tab-target="#shoes" class="tab">Shoes</li>
@@ -146,14 +155,6 @@
 
     <aside class="col-md-3">
       <div class="sidebar">
-        <div class="widgets widget-menu">
-          <div class="widget-search-bar">
-            <form role="search" method="get" class="d-flex">
-              <input class="search-field" placeholder="Search" type="text">
-              <button class="btn btn-dark"><i class="icon icon-search"></i></button>
-            </form>
-          </div>
-        </div>
         <div class="widgets widget-product-tags">
           <h5 class="widget-title">Tags</h5>
           <ul class="product-tags sidebar-list list-unstyled">
