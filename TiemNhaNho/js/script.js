@@ -225,3 +225,22 @@
   });
 
 })(jQuery);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const isSuccess = localStorage.getItem("order_success");
+  const email = localStorage.getItem("userEmail");
+
+  if (isSuccess === "true" && email) {
+    const popup = document.getElementById("order-success-popup");
+    const emailSpan = document.getElementById("popup-email");
+
+    emailSpan.textContent = email;
+    popup.style.display = "flex";
+
+    document.getElementById("popup-close").onclick = () => {
+      popup.style.display = "none";
+      localStorage.removeItem("order_success");
+      localStorage.removeItem("customer_mail");
+    };
+  }
+});

@@ -1,5 +1,6 @@
 import * as apis from "./api.js";
 const CUSTOMER_ID = Number(localStorage.getItem("userId")) //use this for when user login
+const CUSTOMER_MAIL = (localStorage.getItem("userEmail"))
 // for test
 //const CUSTOMER_ID = 2;
 //const orderListEl = document.getElementById("order-list");
@@ -200,7 +201,9 @@ console.log("Stripe paymentMethod:", paymentMethod);
   // 3️⃣ Tạo order qua API
   try {
     await apis.createOrder(orderData);
+    localStorage.setItem("order_success", "true");
     window.location.href = "index.html";
+
 
   } catch (err) {
     console.error(err);
