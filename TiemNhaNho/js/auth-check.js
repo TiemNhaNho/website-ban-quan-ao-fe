@@ -1,4 +1,5 @@
 // Auth Check - Include this file on pages that require authentication
+// Update this URL to match your backend
 const API_BASE_URL = "https://tiem-nha-nho-api.onrender.com";
 
 function getToken() {
@@ -56,49 +57,65 @@ async function requireAuth() {
 
 // Update header with user info
 async function updateHeader() {
+  console.log('=== updateHeader called ===');
+  
   const user = await checkAuth();
-
-  // Find account link in header
-  const accountLinks = document.querySelectorAll('a[href="login.html"]');
-
-  if (user) {
-    accountLinks.forEach((link) => {
-      const parent = link.parentElement;
-      if (parent) {
-        parent.innerHTML = `
-                    <div class="user-dropdown" style="position: relative; display: inline-block;">
-                        <a href="#" class="user-link" style="display: flex; align-items: center; gap: 5px;">
-                            <i class="icon icon-user"></i>
-                            <span>${user.username}</span>
-                        </a>
-                        <div class="dropdown-menu" style="display: none; position: absolute; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); min-width: 150px; z-index: 1000; right: 0; top: 100%; margin-top: 10px; border-radius: 4px;">
-                            <a href="account.html" style="display: block; padding: 10px 15px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">My Account</a>
-                            <a href="orders.html" style="display: block; padding: 10px 15px; color: #333; text-decoration: none; border-bottom: 1px solid #eee;">My Orders</a>
-                            <a href="#" onclick="handleLogout(); return false;" style="display: block; padding: 10px 15px; color: #d32f2f; text-decoration: none;">Logout</a>
-                        </div>
-                    </div>
-                `;
-
-        // Add dropdown toggle functionality
-        const userLink = parent.querySelector(".user-link");
-        const dropdownMenu = parent.querySelector(".dropdown-menu");
-
-        if (userLink && dropdownMenu) {
-          userLink.addEventListener("click", (e) => {
-            e.preventDefault();
-            dropdownMenu.style.display =
-              dropdownMenu.style.display === "none" ? "block" : "none";
-          });
-
-          // Close dropdown when clicking outside
-          document.addEventListener("click", (e) => {
-            if (!parent.contains(e.target)) {
-              dropdownMenu.style.display = "none";
-            }
-          });
-        }
+  console.log('User data:', user);
+  
+  const accountItem = document.getElementById('user-account-item');
+  const accountLink = document.getElementById('user-account-link');
+  
+  console.log('accountItem:', accountItem);
+  console.log('accountLink:', accountLink);
+  
+  if (user && accountItem && accountLink) {
+    console.log('Updating header with username:', user.username);
+    
+    // Update link to show username
+    accountLink.innerHTML = `
+      <i class="icon icon-user"></i>
+      <span class="username">${user.username}</span>
+    `;
+    accountLink.href = '#';
+    
+    // Create dropdown menu
+    const dropdownMenu = document.createElement('div');
+    dropdownMenu.id = 'user-dropdown-menu';
+    dropdownMenu.innerHTML = `
+      <a href="#" class="logout-link" onclick="handleLogout(); return false;">
+        <i class="icon icon-power"></i>
+        Logout
+      </a>
+    `;
+    
+    // Remove old dropdown if exists
+    const oldDropdown = document.getElementById('user-dropdown-menu');
+    if (oldDropdown) {
+      oldDropdown.remove();
+    }
+    
+    accountItem.appendChild(dropdownMenu);
+    
+    // Toggle dropdown on click
+    accountLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('Dropdown toggled');
+      dropdownMenu.classList.toggle('show');
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!accountItem.contains(e.target)) {
+        dropdownMenu.classList.remove('show');
       }
     });
+    
+    console.log('✓ Header updated successfully');
+  } else {
+    console.log('Cannot update header:');
+    console.log('  - user:', !!user);
+    console.log('  - accountItem:', !!accountItem);
+    console.log('  - accountLink:', !!accountLink);
   }
 }
 
@@ -109,16 +126,16 @@ function handleLogout() {
   // Show message
   const messageDiv = document.createElement("div");
   messageDiv.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 15px 20px;
-        background-color: #4CAF50;
-        color: white;
-        border-radius: 4px;
-        z-index: 10000;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    `;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    z-index: 10000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  `;
   messageDiv.textContent = "Đã đăng xuất thành công";
   document.body.appendChild(messageDiv);
 
@@ -129,5 +146,29 @@ function handleLogout() {
 
 // Initialize on page load
 document.addEventListener("DOMContentLoaded", function () {
+  console.log('DOM loaded, setting up header observer...');
+  
+  // Try to update immediately
   updateHeader();
+  
+  // Also watch for header being added dynamically
+  const observer = new MutationObserver((mutations) => {
+    const accountItem = document.getElementById('user-account-item');
+    if (accountItem) {
+      console.log('Header detected by observer, updating...');
+      updateHeader();
+      observer.disconnect();
+    }
+  });
+  
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+  
+  // Also try after a short delay
+  setTimeout(() => {
+    console.log('Delayed update attempt...');
+    updateHeader();
+  }, 500);
 });

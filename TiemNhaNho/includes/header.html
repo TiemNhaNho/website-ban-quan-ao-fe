@@ -11,8 +11,8 @@
           </div>
           <div class="col-md-4 col-sm-12 user-items">
             <ul class="d-flex justify-content-end list-unstyled">
-              <li>
-                <a href="login.html">
+              <li id="user-account-item">
+                <a href="login.html" id="user-account-link">
                   <i class="icon icon-user"></i>
                 </a>
               </li>
@@ -152,5 +152,82 @@
     </nav>
   </div>
 </header>
+
+<style>
+  /* User Dropdown Styles */
+  #user-account-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  #user-account-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    vertical-align: middle;
+  }
+  
+  #user-account-link:hover {
+    background-color: #f5f5f5;
+  }
+  
+  #user-account-link .username {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  
+  #user-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    min-width: 100px;
+    z-index: 9999;
+  }
+  
+  #user-dropdown-menu.show {
+    display: block;
+  }
+  
+  #user-dropdown-menu a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+    padding: 10px 14px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  
+  #user-dropdown-menu a i {
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  
+  #user-dropdown-menu .logout-link {
+    color: #d32f2f;
+  }
+  
+  #user-dropdown-menu .logout-link:hover {
+    background-color: #ffebee;
+  }
+</style>
 
 <script src="js/auth-check.js"></script>
