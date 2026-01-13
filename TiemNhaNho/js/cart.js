@@ -56,6 +56,16 @@ function renderCartItem(cart, product_image, product_variant, product) {
                     ${product_variant?.price_out ?? 0}
                   </span>
                 </div>
+                <div class="card-price">
+                  <span class="money text-primary">
+                    ${product_variant?.size ?? "X"}
+                  </span>
+                </div>
+                <div class="card-price">
+                  <span class="money text-primary">
+                    ${product_variant?.color ?? "None"}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
