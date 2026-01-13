@@ -96,6 +96,12 @@ export async function getProductsByCategory(categoryId) {
   return await res.json()
 }
 
+export async function getCategories() {
+  const res = await fetch(`${API_BASE_URL}/categories`)
+  if (!res.ok) throw new Error("Fetch categories failed")
+  return await res.json()
+}
+
 export async function getProductVariants() {
   const res = await fetch(`${API_BASE_URL}/product-variants`)
   if (!res.ok) throw new Error("Fetch product variants failed")
