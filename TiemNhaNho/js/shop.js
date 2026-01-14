@@ -289,7 +289,7 @@ async function loadCategoriesAndSetupTabs() {
         .forEach((t) => t.classList.remove("active"));
       allTab.classList.add("active");
       currentFilters.categoryId = null;
-      applyFiltersAndSort();
+      loadProducts(null);
     });
 
     tabsContainer.appendChild(allTab);
@@ -313,7 +313,7 @@ async function loadCategoriesAndSetupTabs() {
           .forEach((t) => t.classList.remove("active"));
         tab.classList.add("active");
         currentFilters.categoryId = category.category_id;
-        applyFiltersAndSort();
+        loadProducts(category.category_id);
       });
       tabsContainer.appendChild(tab);
     });
