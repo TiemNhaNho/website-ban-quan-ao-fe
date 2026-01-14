@@ -1,0 +1,6 @@
+{
+  "hosting": {
+    "public": "TiemNhaNho",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  }
+}

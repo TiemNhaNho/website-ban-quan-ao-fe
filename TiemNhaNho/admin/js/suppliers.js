@@ -106,10 +106,10 @@ export function renderSuppliersTable(suppliers) {
       <td>${sup.address}</td>
       <td onclick="event.stopPropagation()">
         <button class="btn-icon" onclick="openSupplierModal(${sup.supplier_id})" title="Sửa">
-            <img src="../images/sua.png" alt="Sửa" class="icon-img">
+            <img src="../public/sua.png" alt="Sửa" class="icon-img">
         </button>
         <button class="btn-icon" onclick="handleDeleteSupplier(${sup.supplier_id})" title="Xóa">
-            <img src="../images/huy.png" alt="Xóa" class="icon-img">
+            <img src="../public/huy.png" alt="Xóa" class="icon-img">
         </button>
       </td>
     `;

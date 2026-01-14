@@ -163,7 +163,7 @@ function renderTable(orders) {
         })" title="View Details"><i class="icon icon-search"></i></button>
         <button class="btn-icon" onclick="editOrder(${
           order.order_id
-        })" title="Edit"><img src="../images/sua.png" alt="Edit" style="width: 16px; height: 16px;"></button>
+        })" title="Edit"><img src="../public/sua.png" alt="Edit" style="width: 16px; height: 16px;"></button>
       </td>
     `;
     tbody.appendChild(tr);

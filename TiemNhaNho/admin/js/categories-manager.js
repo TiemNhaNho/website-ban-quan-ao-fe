@@ -40,10 +40,10 @@ export function renderCategoryTable(categories) {
       <td>${cat.category_name}</td>
       <td onclick="event.stopPropagation()">
         <button class="btn-icon" onclick="openCategoryModal('edit', ${cat.category_id})" title="Sửa">
-            <img src="../images/sua.png" alt="Sửa" class="icon-img">
+            <img src="../public/sua.png" alt="Sửa" class="icon-img">
         </button>
         <button class="btn-icon" onclick="deleteCategory(${cat.category_id})" title="Xóa">
-            <img src="../images/huy.png" alt="Xóa" class="icon-img">
+            <img src="../public/huy.png" alt="Xóa" class="icon-img">
         </button>
       </td>
     `;

@@ -156,12 +156,12 @@ export function renderCouponsTable(coupons) {
         <button class="btn-icon" onclick="openEditModal(${
           coupon.coupon_id
         })" title="Sửa">
-            <img src="../images/sua.png" alt="Sửa" class="icon-img">
+            <img src="../public/sua.png" alt="Sửa" class="icon-img">
         </button>
         <button class="btn-icon" onclick="handleDeleteCoupon(${
           coupon.coupon_id
         })" title="Xóa">
-            <img src="../images/huy.png" alt="Xóa" class="icon-img">
+            <img src="../public/huy.png" alt="Xóa" class="icon-img">
         </button>
       </td>
     `;
