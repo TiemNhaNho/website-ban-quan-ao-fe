@@ -1,95 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Checkout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Checkout</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/vendor.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-  <link rel="stylesheet" href="css/normalize.css" />
-  <link rel="stylesheet" href="css/vendor.css" />
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <body>
+    <div data-include="header"></div>
 
-<body>
+    <section class="checkout-wrap padding-large">
+      <div class="container">
+        <h2 class="section-title">Checkout</h2>
 
-  <div data-include="header"></div>
+        <form id="checkout-form">
+          <!-- HIDDEN: CUSTOMER -->
+          <input type="hidden" id="customer_id" />
 
-  <section class="checkout-wrap padding-large">
-    <div class="container">
+          <!-- SHIPPING METHOD -->
+          <div class="form-group">
+            <label for="shipping_method">Shipping Method</label>
+            <select id="shipping_method" class="form-control" required>
+              <!-- load from API -->
+            </select>
+          </div>
 
-      <h2 class="section-title">Checkout</h2>
+          <!-- COUPON -->
+          <div class="form-group">
+            <label for="coupon">Coupon</label>
+            <select id="coupon" class="form-control">
+              <option value="">No coupon</option>
+            </select>
+          </div>
 
-      <form id="checkout-form">
+          <!-- ORDER SUMMARY -->
+          <div class="order-summary mt-4">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th>Subtotal</th>
+                  <td id="subtotal">0</td>
+                </tr>
+                <tr>
+                  <th>Discount</th>
+                  <td id="discount">0</td>
+                </tr>
+                <tr>
+                  <th>Shipping Fee</th>
+                  <td id="shipping_fee">0</td>
+                </tr>
+                <tr>
+                  <th>Total</th>
+                  <td id="total_money"><strong>0</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-        <!-- HIDDEN: CUSTOMER -->
-        <input type="hidden" id="customer_id" />
+          <!-- PAYMENT METHOD (Stripe) -->
+          <div class="form-group mt-4">
+            <label>Payment Method</label>
+            <div id="card-element" class="form-control"></div>
+          </div>
 
-        <!-- SHIPPING METHOD -->
-        <div class="form-group">
-          <label for="shipping_method">Shipping Method</label>
-          <select id="shipping_method" class="form-control" required>
-            <!-- load from API -->
-          </select>
-        </div>
+          <!-- SUBMIT -->
+          <button type="submit" id="pay-btn" class="btn btn-dark btn-full mt-4">
+            Place Order
+          </button>
+        </form>
+      </div>
+    </section>
 
-        <!-- COUPON -->
-        <div class="form-group">
-          <label for="coupon">Coupon</label>
-          <select id="coupon" class="form-control">
-            <option value="">No coupon</option>
-          </select>
-        </div>
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/include.js"></script>
 
-        <!-- ORDER SUMMARY -->
-        <div class="order-summary mt-4">
-          <table class="table">
-            <tbody>
-              <tr>
-                <th>Subtotal</th>
-                <td id="subtotal">0</td>
-              </tr>
-              <tr>
-                <th>Discount</th>
-                <td id="discount">0</td>
-              </tr>
-              <tr>
-                <th>Shipping Fee</th>
-                <td id="shipping_fee">0</td>
-              </tr>
-              <tr>
-                <th>Total</th>
-                <td id="total_money"><strong>0</strong></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
 
-        <!-- PAYMENT METHOD (Stripe) -->
-        <div class="form-group mt-4">
-          <label>Payment Method</label>
-          <div id="card-element" class="form-control"></div>
-        </div>
-
-        <!-- SUBMIT -->
-        <button type="submit" id = "pay-btn" class="btn btn-dark btn-full mt-4">
-          Place Order
-        </button>
-
-      </form>
-
-    </div>
-  </section>
-
-  <script src="js/jquery-1.11.0.min.js"></script>
-  <script src="js/include.js"></script>
-
-  <!-- Stripe -->
-  <script src="https://js.stripe.com/v3/"></script>
-
-  <!-- Order logic -->
-  <script src="js/order.js" type="module"></script>
-
-</body>
-
+    <!-- Order logic -->
+    <script src="js/order.js" type="module"></script>
+    <script src="js/auth-check.js"></script>
+  </body>
 </html>

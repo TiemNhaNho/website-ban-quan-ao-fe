@@ -1,9 +1,9 @@
 import * as apis from "./api.js";
 
-let selectedVariant = null
-let allVariants = []
-let selectedColor = null
-let selectedSize = null
+let selectedVariant = null;
+let allVariants = [];
+let selectedColor = null;
+let selectedSize = null;
 
 async function loadProductDetail() {
   const productId = new URLSearchParams(window.location.search).get("id");
@@ -29,7 +29,7 @@ async function loadProductDetail() {
     let avgRating = 0;
     if (reviews.length > 0) {
       const total = reviews.reduce((sum, r) => sum + Number(r.rating || 0), 0);
-      avgRating = (total / reviews.length);
+      avgRating = total / reviews.length;
     }
 
     renderRating(avgRating, reviews.length);
@@ -39,45 +39,41 @@ async function loadProductDetail() {
     =============================== */
     const variantRes = await apis.getAllVariantsByProductID(productId);
     const variants = variantRes.data || [];
-    allVariants = variants
+    allVariants = variants;
     renderColors(variants);
     renderSizes(variants);
 
-
     /* DEFAULT SELECT */
-    selectedVariant = allVariants[0]
-    selectedColor = selectedVariant.color
-    selectedSize = selectedVariant.size
-
-    document.querySelector(".product-price strong").innerText =
-      `${selectedVariant.price_out}K VND`
+    selectedVariant = allVariants[0];
+    selectedColor = selectedVariant.color;
+    selectedSize = selectedVariant.size;
 
     document.querySelector(
-      ".product-quantity .item-title strong"
-    ).innerText = selectedVariant.stock_quantity
+      ".product-price strong"
+    ).innerText = `${selectedVariant.price_out}K VND`;
+
+    document.querySelector(".product-quantity .item-title strong").innerText =
+      selectedVariant.stock_quantity;
 
     /* HIGHLIGHT DEFAULT (JS THUẦN) */
-    document
-      .querySelectorAll(".color-toggle a")
-      .forEach(a => {
-        if (a.innerText.trim() === selectedColor) a.classList.add("active")
-      })
+    document.querySelectorAll(".color-toggle a").forEach((a) => {
+      if (a.innerText.trim() === selectedColor) a.classList.add("active");
+    });
 
-    document
-      .querySelectorAll(".swatch a")
-      .forEach(a => {
-        if (a.innerText.trim() === selectedSize) a.classList.add("active")
-      })
-    await renderProductImages(productId)  
+    document.querySelectorAll(".swatch a").forEach((a) => {
+      if (a.innerText.trim() === selectedSize) a.classList.add("active");
+    });
+    await renderProductImages(productId);
     /* ===============================
       MISCS
     =============================== */
     const categoryRes = await apis.getCategoryByID(product.category_id);
     const category = categoryRes.data;
 
-    document.querySelector(".product-quantity .item-title strong").innerText = variants[0].stock_quantity
-    document.querySelector("#category-value").innerText = category.category_name
-
+    document.querySelector(".product-quantity .item-title strong").innerText =
+      variants[0].stock_quantity;
+    document.querySelector("#category-value").innerText =
+      category.category_name;
   } catch (err) {
     console.error("Load detail failed:", err);
   }
@@ -119,19 +115,19 @@ function renderRating(avg, count) {
    UPDATE SELECTED VARIANT
 ================================ */
 function syncSelectedVariant() {
-  if (!selectedColor || !selectedSize) return
+  if (!selectedColor || !selectedSize) return;
 
   selectedVariant = allVariants.find(
-    v => v.color === selectedColor && v.size === selectedSize
-  )
+    (v) => v.color === selectedColor && v.size === selectedSize
+  );
 
   if (selectedVariant) {
-    document.querySelector(".product-price strong").innerText =
-      `${selectedVariant.price_out}K VND`
-
     document.querySelector(
-      ".product-quantity .item-title strong"
-    ).innerText = selectedVariant.stock_quantity
+      ".product-price strong"
+    ).innerText = `${selectedVariant.price_out}K VND`;
+
+    document.querySelector(".product-quantity .item-title strong").innerText =
+      selectedVariant.stock_quantity;
   }
 }
 
@@ -154,63 +150,61 @@ function syncSelectedVariant() {
 //   });
 // }
 function renderColors(variants) {
-  const list = document.querySelector(".color-toggle .select-list")
-  list.innerHTML = ""
+  const list = document.querySelector(".color-toggle .select-list");
+  list.innerHTML = "";
 
-  const colors = [...new Set(variants.map(v => v.color).filter(Boolean))]
+  const colors = [...new Set(variants.map((v) => v.color).filter(Boolean))];
 
-  colors.forEach(color => {
-    const li = document.createElement("li")
-    li.className = "select-item"
+  colors.forEach((color) => {
+    const li = document.createElement("li");
+    li.className = "select-item";
 
-    const a = document.createElement("a")
-    a.href = "#"
-    a.innerText = color
+    const a = document.createElement("a");
+    a.href = "#";
+    a.innerText = color;
 
-    a.onclick = e => {
-      e.preventDefault()
-      selectedColor = color
+    a.onclick = (e) => {
+      e.preventDefault();
+      selectedColor = color;
 
-      list.querySelectorAll("a").forEach(el =>
-        el.classList.remove("active")
-      )
-      a.classList.add("active")
+      list.querySelectorAll("a").forEach((el) => el.classList.remove("active"));
+      a.classList.add("active");
 
-      syncSelectedVariant()
-    }
+      syncSelectedVariant();
+    };
 
-    li.appendChild(a)
-    list.appendChild(li)
-  })
+    li.appendChild(a);
+    list.appendChild(li);
+  });
 }
 /* ===============================
    RENDER PRODUCT IMAGES (SWIPER)
 ================================ */
 async function renderProductImages(productId) {
-  const res = await apis.getAllImagesByProductID(productId)
-  const images = res.data || []
+  const res = await apis.getAllImagesByProductID(productId);
+  const images = res.data || [];
 
-  const thumbWrapper = document.querySelector(".thumb-swiper .swiper-wrapper")
-  const largeWrapper = document.querySelector(".large-swiper .swiper-wrapper")
+  const thumbWrapper = document.querySelector(".thumb-swiper .swiper-wrapper");
+  const largeWrapper = document.querySelector(".large-swiper .swiper-wrapper");
 
-  thumbWrapper.innerHTML = ""
-  largeWrapper.innerHTML = ""
+  thumbWrapper.innerHTML = "";
+  largeWrapper.innerHTML = "";
 
   images
     .sort((a, b) => a.sort_order - b.sort_order)
-    .forEach(img => {
+    .forEach((img) => {
       /* THUMB */
-      const thumbSlide = document.createElement("div")
-      thumbSlide.className = "swiper-slide"
-      thumbSlide.innerHTML = `<img src="${img.image_url}" alt="">`
-      thumbWrapper.appendChild(thumbSlide)
+      const thumbSlide = document.createElement("div");
+      thumbSlide.className = "swiper-slide";
+      thumbSlide.innerHTML = `<img src="${img.image_url}" alt="">`;
+      thumbWrapper.appendChild(thumbSlide);
 
       /* LARGE */
-      const largeSlide = document.createElement("div")
-      largeSlide.className = "swiper-slide"
-      largeSlide.innerHTML = `<img src="${img.image_url}" alt="single-product">`
-      largeWrapper.appendChild(largeSlide)
-    })
+      const largeSlide = document.createElement("div");
+      largeSlide.className = "swiper-slide";
+      largeSlide.innerHTML = `<img src="${img.image_url}" alt="single-product">`;
+      largeWrapper.appendChild(largeSlide);
+    });
 }
 /* ===============================
    📏 RENDER SIZES
@@ -231,36 +225,33 @@ async function renderProductImages(productId) {
 //   });
 // }
 function renderSizes(variants) {
-  const list = document.querySelector(".swatch .select-list")
-  list.innerHTML = ""
+  const list = document.querySelector(".swatch .select-list");
+  list.innerHTML = "";
 
-  const sizes = [...new Set(variants.map(v => v.size).filter(Boolean))]
+  const sizes = [...new Set(variants.map((v) => v.size).filter(Boolean))];
 
-  sizes.forEach(size => {
-    const li = document.createElement("li")
-    li.className = "select-item"
+  sizes.forEach((size) => {
+    const li = document.createElement("li");
+    li.className = "select-item";
 
-    const a = document.createElement("a")
-    a.href = "#"
-    a.innerText = size
+    const a = document.createElement("a");
+    a.href = "#";
+    a.innerText = size;
 
-    a.onclick = e => {
-      e.preventDefault()
-      selectedSize = size
+    a.onclick = (e) => {
+      e.preventDefault();
+      selectedSize = size;
 
-      list.querySelectorAll("a").forEach(el =>
-        el.classList.remove("active")
-      )
-      a.classList.add("active")
+      list.querySelectorAll("a").forEach((el) => el.classList.remove("active"));
+      a.classList.add("active");
 
-      syncSelectedVariant()
-    }
+      syncSelectedVariant();
+    };
 
-    li.appendChild(a)
-    list.appendChild(li)
-  })
+    li.appendChild(a);
+    list.appendChild(li);
+  });
 }
-
 
 // function updateSelectedVariant({ color, size }) {
 //   const selectedColor =
@@ -285,19 +276,15 @@ function renderSizes(variants) {
 // }
 
 window.addToCartFromDetail = async function () {
-  if (!selectedVariant) return alert("Select color & size")
+  if (!selectedVariant) return alert("Select color & size");
 
-  const quantity = Number(document.getElementById("quantity").value) || 1
-  const customerId = Number(localStorage.getItem("userId")) || 2
+  const quantity = Number(document.getElementById("quantity").value) || 1;
+  const customerId = Number(localStorage.getItem("userId")) || 2;
 
-  await apis.addToCart(
-    customerId,
-    selectedVariant.variant_id,
-    quantity
-  )
+  await apis.addToCart(customerId, selectedVariant.variant_id, quantity);
 
-  alert("Added to cart")
-  window.location.href = "cart.html"
-}
+  // alert("Added to cart")
+  window.location.href = "cart.html";
+};
 
-window.addEventListener("DOMContentLoaded", loadProductDetail)
+window.addEventListener("DOMContentLoaded", loadProductDetail);

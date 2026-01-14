@@ -1,19 +1,18 @@
-//const API_BASE_URL = "https://tiem-nha-nho-api.onrender.com"
-const API_BASE_URL = "http://localhost:8000"
+const API_BASE_URL = "https://tiem-nha-nho-api.onrender.com";
 
 /* ================= CART ================= */
 
 // GET /carts
 export async function getAllCartItems() {
-  const res = await fetch(`${API_BASE_URL}/carts`)
-  if (!res.ok) throw new Error("Fetch cart items failed")
-  return await res.json()
+  const res = await fetch(`${API_BASE_URL}/carts`);
+  if (!res.ok) throw new Error("Fetch cart items failed");
+  return await res.json();
 }
 
 export async function getAllCartItemsById(customerId) {
-  const res = await fetch(`${API_BASE_URL}/carts-by-customer/${customerId}`)
-  if (!res.ok) throw new Error("Fetch cart items failed")
-  return await res.json()
+  const res = await fetch(`${API_BASE_URL}/carts-by-customer/${customerId}`);
+  if (!res.ok) throw new Error("Fetch cart items failed");
+  return await res.json();
 }
 
 // POST /carts
@@ -24,37 +23,37 @@ export async function addToCart(customerId, variantId, quantity) {
     body: JSON.stringify({
       customer_id: customerId,
       variant_id: variantId,
-      quantity
-    })
-  })
+      quantity,
+    }),
+  });
 
-  if (!res.ok) throw new Error("Failed to add to cart")
-  return await res.json()
+  if (!res.ok) throw new Error("Failed to add to cart");
+  return await res.json();
 }
 
 // DELETE /carts/{id}
 export async function deleteCartItem(itemId) {
   const res = await fetch(`${API_BASE_URL}/carts/${itemId}`, {
-    method: "DELETE"
-  })
+    method: "DELETE",
+  });
 
-  if (!res.ok) throw new Error("Failed to remove from cart")
-  return res.status === 204 ? true : await res.json()
+  if (!res.ok) throw new Error("Failed to remove from cart");
+  return res.status === 204 ? true : await res.json();
 }
 
 async function updateCartItemQuantity(itemId, quantity) {
   const res = await fetch(
     `${API_BASE_URL}/carts/${itemId}?quantity=${parseInt(quantity, 10)}`,
     {
-      method: "PATCH"
+      method: "PATCH",
     }
-  )
+  );
 
-  if (!res.ok) throw new Error("Failed to update cart item quantity")
-  return await res.json()
+  if (!res.ok) throw new Error("Failed to update cart item quantity");
+  return await res.json();
 }
 
-window.updateCartItemQuantity = updateCartItemQuantity
+window.updateCartItemQuantity = updateCartItemQuantity;
 
 // // FE API
 // async function loadCouponAndShippingOptions() {
@@ -85,37 +84,37 @@ window.updateCartItemQuantity = updateCartItemQuantity
 /* ================= PRODUCT ================= */
 
 export async function getProducts() {
-  const res = await fetch(`${API_BASE_URL}/products`)
-  if (!res.ok) throw new Error("Fetch products failed")
-  return await res.json()
+  const res = await fetch(`${API_BASE_URL}/products`);
+  if (!res.ok) throw new Error("Fetch products failed");
+  return await res.json();
 }
 
 export async function getProductsByCategory(categoryId) {
-  const res = await fetch(`${API_BASE_URL}/products-by-category/${categoryId}`)
-  if (!res.ok) throw new Error("Fetch products by category failed")
-  return await res.json()
+  const res = await fetch(`${API_BASE_URL}/products-by-category/${categoryId}`);
+  if (!res.ok) throw new Error("Fetch products by category failed");
+  return await res.json();
 }
 
 export async function getCategories() {
-  const res = await fetch(`${API_BASE_URL}/categories`)
-  if (!res.ok) throw new Error("Fetch categories failed")
-  return await res.json()
+  const res = await fetch(`${API_BASE_URL}/categories`);
+  if (!res.ok) throw new Error("Fetch categories failed");
+  return await res.json();
 }
 
 export async function getProductVariants() {
-  const res = await fetch(`${API_BASE_URL}/product-variants`)
-  if (!res.ok) throw new Error("Fetch product variants failed")
-  return await res.json()
+  const res = await fetch(`${API_BASE_URL}/product-variants`);
+  if (!res.ok) throw new Error("Fetch product variants failed");
+  return await res.json();
 }
-export async function getProductsById(product_id){
-  const res = await fetch(`${API_BASE_URL}/products/${product_id}`)
-  if (!res.ok) throw new Error("Fetch products failed")
-  return await res.json()
+export async function getProductsById(product_id) {
+  const res = await fetch(`${API_BASE_URL}/products/${product_id}`);
+  if (!res.ok) throw new Error("Fetch products failed");
+  return await res.json();
 }
 export async function getProductImages() {
-  const res = await fetch(`${API_BASE_URL}/product-images`)
-  if (!res.ok) throw new Error("Fetch product images failed")
-  return await res.json()
+  const res = await fetch(`${API_BASE_URL}/product-images`);
+  if (!res.ok) throw new Error("Fetch product images failed");
+  return await res.json();
 }
 
 /* ================= ORDER ================= */
@@ -124,7 +123,7 @@ export async function createOrder(data) {
   const res = await fetch(`${API_BASE_URL}/orders`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   });
 
   if (!res.ok) {
@@ -135,16 +134,18 @@ export async function createOrder(data) {
       errData = await res.text();
     }
     console.error("Create order API error:", errData);
-    throw new Error("Create order failed: " + (errData.detail || JSON.stringify(errData)));
+    throw new Error(
+      "Create order failed: " + (errData.detail || JSON.stringify(errData))
+    );
   }
 
   return await res.json();
 }
 
 export async function getAllOrdersById(orderId) {
-  const res = await fetch(`${API_BASE_URL}/orders/${orderId}`)
-  if (!res.ok) throw new Error("Fetch orders failed")
-  return await res.json()
+  const res = await fetch(`${API_BASE_URL}/orders/${orderId}`);
+  if (!res.ok) throw new Error("Fetch orders failed");
+  return await res.json();
 }
 
 /* ================= VARIANTS ================= */
@@ -155,56 +156,63 @@ export async function fetchVariantById(variantId) {
 }
 
 export async function getAllVariantsByProductID(product_id) {
-  const res = await fetch(`${API_BASE_URL}/product-variants-by-product/${product_id}`);
+  const res = await fetch(
+    `${API_BASE_URL}/product-variants-by-product/${product_id}`
+  );
   if (!res.ok) throw new Error("Fetch variant failed");
   return await res.json();
 }
 /* ================= COUPONS-DROPDOWN ================= */
 export async function getCouponOptions() {
-  const res = await fetch(`${API_BASE_URL}/coupons-select/options`)
-  if (!res.ok) throw new Error("Fetch coupon options failed")
-  return await res.json()
+  const res = await fetch(`${API_BASE_URL}/coupons-select/options`);
+  if (!res.ok) throw new Error("Fetch coupon options failed");
+  return await res.json();
 }
 /* ================= SHIPPING-DROPDOWN ================= */
 export async function getShippingOptions() {
-  const res = await fetch(`${API_BASE_URL}/shipping-methods-select/options`)
-  if (!res.ok) throw new Error("Fetch shipping options failed")
-  return await res.json()
+  const res = await fetch(`${API_BASE_URL}/shipping-methods-select/options`);
+  if (!res.ok) throw new Error("Fetch shipping options failed");
+  return await res.json();
 }
 
 export async function getShippingById(shipping_method_id) {
-  const res = await fetch(`${API_BASE_URL}/shipping-methods/${shipping_method_id}`);
+  const res = await fetch(
+    `${API_BASE_URL}/shipping-methods/${shipping_method_id}`
+  );
   if (!res.ok) throw new Error("Fetch shipping method failed");
   return await res.json();
-  
 }
 
-export async function getCurrentCustomer(){
-  const res = await fetch(`${API_BASE_URL}/me`)
-  if (!res.ok) throw new Error("Fetch current customer failed")
-  return await res.json()
+export async function getCurrentCustomer() {
+  const res = await fetch(`${API_BASE_URL}/me`);
+  if (!res.ok) throw new Error("Fetch current customer failed");
+  return await res.json();
 }
 
-export async function getCouponById(coupon_id){
+export async function getCouponById(coupon_id) {
   const res = await fetch(`${API_BASE_URL}/coupons/${coupon_id}`);
   if (!res.ok) throw new Error("Fetch coupon failed");
   return await res.json();
 }
 
-export async function getAllImagesByProductID(product_id){
-  const res = await fetch(`${API_BASE_URL}/product-images-by-product/${product_id}`);
+export async function getAllImagesByProductID(product_id) {
+  const res = await fetch(
+    `${API_BASE_URL}/product-images-by-product/${product_id}`
+  );
   if (!res.ok) throw new Error("Fetch variant failed");
   return await res.json();
 }
 
 export async function getAllReviewsByProductID(product_id) {
-    const res = await fetch(`${API_BASE_URL}/product-reviews-by-product/${product_id}`);
+  const res = await fetch(
+    `${API_BASE_URL}/product-reviews-by-product/${product_id}`
+  );
   if (!res.ok) throw new Error("Fetch variant failed");
   return await res.json();
 }
 
 export async function getCategoryByID(category_id) {
-    const res = await fetch(`${API_BASE_URL}/categories/${category_id}`);
+  const res = await fetch(`${API_BASE_URL}/categories/${category_id}`);
   if (!res.ok) throw new Error("Fetch category failed");
   return await res.json();
-} 
+}
