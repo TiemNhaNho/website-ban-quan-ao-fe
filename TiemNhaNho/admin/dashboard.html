@@ -3,11 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com https://maxcdn.bootstrapcdn.com; connect-src 'self' https://n8n-agrccjay.ap-southeast-1.clawcloudrun.com https://tiem-nha-nho-api.onrender.com;"
+    />
     <title>Dashboard - Tiệm Nhà Nhỏ Admin</title>
     <link rel="stylesheet" href="../css/normalize.css" />
     <link rel="stylesheet" href="../icomoon/icomoon.css" />
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="css/admin-style.css" />
+    <link rel="stylesheet" href="css/chatbot.css" />
   </head>
   <body class="admin-layout">
     <div class="admin-container">
@@ -215,5 +220,6 @@
     <script src="../js/jquery-1.11.0.min.js"></script>
     <script src="js/admin.js"></script>
     <script src="js/dashboard.js"></script>
+    <script src="js/chatbot.js"></script>
   </body>
 </html>
